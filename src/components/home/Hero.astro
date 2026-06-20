@@ -1,0 +1,71 @@
+---
+/** Hero: relief-first message + the three contact channels + a calm photo. */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { home } from '../../i18n/home';
+import { images } from '../../data/images';
+import ContactChannels from '../ui/ContactChannels.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const c = home[lang].hero;
+const img = images.heroCall;
+---
+<section class="relative overflow-hidden">
+  <div
+    class="pointer-events-none absolute inset-0 -z-10"
+    style="background:
+      radial-gradient(60% 55% at 85% 0%, oklch(0.95 0.024 196 / 0.9), transparent 70%),
+      radial-gradient(50% 50% at 0% 100%, oklch(0.94 0.045 78 / 0.55), transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-14 pt-10 sm:px-6 sm:pt-16 lg:grid-cols-[1.04fr_0.96fr] lg:gap-14 lg:pb-24">
+    <div>
+      <p class="inline-flex items-center gap-2 rounded-pill bg-brand-soft px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-deep">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-brand"></span>
+        </span>
+        {c.eyebrow}
+      </p>
+
+      <h1 class="mt-5 text-[clamp(2.3rem,6.2vw,4.2rem)]">
+        {c.title}<br /><span class="text-brand">{c.titleAccent}</span>
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">{c.subtitle}</p>
+
+      <ContactChannels class="mt-8" />
+
+      <p class="mt-6 flex items-center gap-2 text-sm font-medium text-fg">
+        <svg class="h-5 w-5 shrink-0 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+        {c.reassurance}
+      </p>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+      <div class="overflow-hidden rounded-[2rem] shadow-lift">
+        <img
+          src={img.src}
+          alt={img.alt[lang]}
+          width="1300"
+          height="1450"
+          fetchpriority="high"
+          class="aspect-[4/5] w-full object-cover"
+        />
+      </div>
+      {/* [STOCK PROVISIONAL — reemplazar con foto real] */}
+
+      <div class="absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl border border-line bg-paper px-4 py-3 shadow-soft sm:-left-5">
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-accent-soft text-accent-deep">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 8v4l3 2" /><circle cx="12" cy="12" r="9" />
+          </svg>
+        </span>
+        <span class="text-sm font-semibold leading-tight text-ink">{t.common.respond}<br /><span class="font-medium text-muted">{t.common.free}</span></span>
+      </div>
+    </div>
+  </div>
+</section>

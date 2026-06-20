@@ -1,0 +1,47 @@
+---
+/**
+ * CTA button / link. Variants tuned to the "Calma cálida" palette.
+ *   amber   - primary action (warm, owns conversions)
+ *   brand   - teal solid (secondary emphasis)
+ *   outline - low emphasis on light surfaces
+ *   onband  - for use on the teal band (cream fill)
+ */
+interface Props {
+  href: string;
+  variant?: 'amber' | 'brand' | 'outline' | 'onband';
+  size?: 'md' | 'lg';
+  target?: string;
+  rel?: string;
+  class?: string;
+  ariaLabel?: string;
+}
+const {
+  href,
+  variant = 'amber',
+  size = 'md',
+  target,
+  rel,
+  class: className = '',
+  ariaLabel,
+} = Astro.props;
+
+const sizes = {
+  md: 'px-5 py-3 text-sm',
+  lg: 'px-6 py-3.5 text-base',
+};
+const variants = {
+  amber: 'bg-accent text-ink shadow-soft hover:bg-accent-deep',
+  brand: 'bg-brand text-cream shadow-soft hover:bg-brand-deep',
+  outline: 'border border-line text-fg hover:border-brand hover:text-brand',
+  onband: 'bg-cream text-ink shadow-soft hover:bg-paper',
+};
+---
+<a
+  href={href}
+  target={target}
+  rel={rel}
+  aria-label={ariaLabel}
+  class={`inline-flex items-center justify-center gap-2 rounded-pill font-semibold transition duration-200 active:scale-[0.98] ${sizes[size]} ${variants[variant]} ${className}`}
+>
+  <slot />
+</a>

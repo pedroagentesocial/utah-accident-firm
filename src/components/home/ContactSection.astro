@@ -1,0 +1,55 @@
+---
+/** Capture: form (island) + the three channels + visible legal disclaimer. */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { home } from '../../i18n/home';
+import { business } from '../../data/business';
+import { privacyHref } from '../../lib/contact';
+import ContactForm from '../islands/ContactForm.tsx';
+import ContactChannels from '../ui/ContactChannels.astro';
+import LegalDisclaimer from '../LegalDisclaimer.astro';
+import Reveal from '../ui/Reveal.astro';
+import SectionLabel from '../ui/SectionLabel.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const c = home[lang].contact;
+const a = business.address;
+---
+<section id="contact" class="section-y scroll-mt-20 bg-paper-2">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+    <div>
+      <Reveal>
+        <div>
+          <SectionLabel tone="brand">{c.kicker}</SectionLabel>
+          <h2 class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]">{c.title}</h2>
+          <p class="mt-4 max-w-lg text-lg leading-relaxed text-muted">{c.intro}</p>
+        </div>
+      </Reveal>
+
+      <div class="mt-8">
+        <ContactForm
+          client:load
+          t={t.form}
+          lang={lang}
+          privacyHref={privacyHref(lang)}
+          privacyLink={t.form.privacyLink}
+        />
+      </div>
+    </div>
+
+    <div class="lg:pt-2">
+      <div class="rounded-card border border-line bg-paper p-6 shadow-soft sm:p-7">
+        <p class="text-sm font-semibold text-ink">{c.orReach}</p>
+        <ContactChannels layout="stack" class="mt-4" />
+
+        <address class="mt-6 border-t border-line pt-5 text-sm not-italic leading-relaxed text-muted">
+          {a.street}<br />{a.city}, {a.region} {a.postalCode}
+          <a href={`mailto:${business.email}`} class="mt-2 block font-medium text-brand hover:underline">{business.email}</a>
+          <span class="mt-1 block">{t.channels.available}</span>
+        </address>
+      </div>
+
+      <LegalDisclaimer variant="banner" class="mt-5" />
+    </div>
+  </div>
+</section>

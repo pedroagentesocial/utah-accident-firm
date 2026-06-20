@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PrivacyContent from '../../components/legal/PrivacyContent.astro';
+import { privacy } from '../../i18n/legal';
+
+const c = privacy.es;
+---
+<BaseLayout title={c.seoTitle} description={c.seoDescription}>
+  <PrivacyContent lang="es" />
+</BaseLayout>

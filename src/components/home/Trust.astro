@@ -1,0 +1,48 @@
+---
+/**
+ * Trust: qualitative points always shown; real figures only when verified.
+ * No hero-metric template, no invented numbers.
+ */
+import { getLangFromUrl } from '../../i18n/utils';
+import { home } from '../../i18n/home';
+import { trustPoints, trustStats, trustVerified } from '../../data/trust';
+import Reveal from '../ui/Reveal.astro';
+import SectionLabel from '../ui/SectionLabel.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const c = home[lang].trust;
+const points = trustPoints[lang];
+---
+<section class="section-y bg-accent-soft/40">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <Reveal>
+      <div class="max-w-2xl">
+        <SectionLabel tone="accent">{c.kicker}</SectionLabel>
+        <h2 class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]">{c.title}</h2>
+        <p class="mt-4 text-lg leading-relaxed text-muted">{c.intro}</p>
+      </div>
+    </Reveal>
+
+    <div class="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-3">
+      {points.map((point, i) => (
+        <Reveal delay={i * 80} class="flex items-start gap-3">
+          <svg class="mt-0.5 h-6 w-6 shrink-0 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" />
+          </svg>
+          <p class="font-medium leading-snug text-ink">{point}</p>
+        </Reveal>
+      ))}
+    </div>
+
+    {trustVerified && (
+      <Reveal class="mt-10 flex flex-wrap items-end gap-x-10 gap-y-5 border-t border-line pt-8">
+        {trustStats.map((s) => (
+          <div>
+            <div class="font-display text-3xl font-semibold text-brand sm:text-4xl">{s.value}</div>
+            <div class="mt-1 text-sm text-muted">{s.label[lang]}</div>
+          </div>
+        ))}
+      </Reveal>
+    )}
+  </div>
+</section>

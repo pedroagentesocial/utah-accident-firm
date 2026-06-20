@@ -1,0 +1,21 @@
+---
+/**
+ * TEMPORARY text wordmark — Utah Accident Firm.
+ * ⚠️ Placeholder until a real logo is provided. Pure type, no image asset,
+ * so it adapts to light/dark surfaces via `tone`.
+ */
+interface Props {
+  tone?: 'ink' | 'light';
+  class?: string;
+}
+const { tone = 'ink', class: className = '' } = Astro.props;
+const base = tone === 'light' ? 'text-paper' : 'text-ink';
+const accent = tone === 'light' ? 'text-paper/70' : 'text-brand';
+---
+<span class={`inline-flex items-baseline gap-1.5 font-display font-semibold tracking-tight ${base} ${className}`}>
+  <!-- provisional mark: stacked chevrons evoking "forward / resolution" -->
+  <svg class={`h-4 w-4 shrink-0 self-center sm:h-5 sm:w-5 ${accent}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5 13l4 4 10-11" />
+  </svg>
+  <span class="text-[0.92rem] leading-none sm:text-[1.13rem]">Utah Accident <span class={accent}>Firm</span></span>
+</span>

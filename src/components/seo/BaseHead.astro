@@ -1,0 +1,110 @@
+---
+/**
+ * <head> SEO block: meta, Open Graph + Twitter, canonical, hreflang,
+ * JSON-LD LocalBusiness (NAP + geo + areaServed), and GA4 via Partytown.
+ */
+import { PUBLIC_GA4_ID } from 'astro:env/client';
+import { SITE_URL, OG_LOCALE, HREFLANG } from '../../config/site';
+import { business } from '../../data/business';
+import { OG_IMAGE } from '../../data/images';
+import { getLangFromUrl, getAlternatePath } from '../../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  /** OG image: absolute URL or site-root path. Defaults to the brand share image. */
+  image?: string;
+}
+const { title, description, image = OG_IMAGE } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+const ogImage = new URL(image, SITE_URL).href;
+
+const alternates = [
+  { hreflang: HREFLANG.en, href: new URL(getAlternatePath(Astro.url, 'en'), SITE_URL).href },
+  { hreflang: HREFLANG.es, href: new URL(getAlternatePath(Astro.url, 'es'), SITE_URL).href },
+  { hreflang: 'x-default', href: new URL(getAlternatePath(Astro.url, 'en'), SITE_URL).href },
+];
+
+// JSON-LD: a local service business — explicitly NOT a legal service.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE_URL}/#business`,
+  name: business.name,
+  legalName: business.legalName,
+  description:
+    lang === 'es' ? business.serviceType.es : business.serviceType.en,
+  url: SITE_URL,
+  telephone: business.phone,
+  email: business.email,
+  image: ogImage,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: business.address.street,
+    addressLocality: business.address.city,
+    addressRegion: business.address.region,
+    postalCode: business.address.postalCode,
+    addressCountry: business.address.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: business.geo.lat,
+    longitude: business.geo.lng,
+  },
+  areaServed: business.areaServed.cities.map((c) => ({
+    '@type': 'City',
+    name: c,
+    containedInPlace: { '@type': 'State', name: 'Utah' },
+  })),
+  openingHoursSpecification: business.hours.map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.days,
+    opens: h.opens,
+    closes: h.closes,
+  })),
+};
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={business.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={OG_LOCALE[lang]} />
+<meta property="og:locale:alternate" content={lang === 'en' ? OG_LOCALE.es : OG_LOCALE.en} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- JSON-LD: LocalBusiness (not a law firm) -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
+<!-- GA4 via Partytown (only when configured) -->
+{PUBLIC_GA4_ID && (
+  <>
+    <script type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA4_ID}`} is:inline></script>
+    <script type="text/partytown" is:inline define:vars={{ id: PUBLIC_GA4_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', id);
+    </script>
+  </>
+)}

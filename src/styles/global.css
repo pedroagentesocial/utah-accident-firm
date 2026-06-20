@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/hanken-grotesk";
+
+/* ==========================================================================
+   DESIGN TOKENS — Utah Accident Firm · "Calma cálida"
+   --------------------------------------------------------------------------
+   Direction: Committed, light, warm. A deep blue-green (teal) carries trust
+   without the generic insurance-navy; warm amber owns the CTAs; surfaces are
+   warm cream/bone. Reads as "a calm person just took over", not corporate.
+   OKLCH throughout, neutrals tinted warm. No pure #000 / #fff.
+
+   ⚠️ Still PROVISIONAL until a real logo/identity lands, but token NAMES are
+   stable, so swapping values later won't touch markup.
+   ========================================================================== */
+
+@theme {
+  /* --- Brand: deep, calm teal / blue-green -------------------------------- */
+  --color-ink: oklch(0.28 0.035 212);        /* headings — deep teal-charcoal */
+  --color-brand: oklch(0.46 0.072 201);      /* primary teal */
+  --color-brand-deep: oklch(0.38 0.066 204); /* hover / pressed */
+  --color-brand-soft: oklch(0.95 0.024 196); /* pale teal section tint */
+  --color-brand-band: oklch(0.42 0.07 202);  /* full teal band background */
+
+  /* --- Accent: warm amber, owns the CTAs --------------------------------- */
+  --color-accent: oklch(0.80 0.135 72);      /* primary buttons */
+  --color-accent-deep: oklch(0.71 0.138 62); /* hover / pressed */
+  --color-accent-soft: oklch(0.94 0.045 78); /* soft amber wash */
+
+  /* --- Warm neutrals (cream / bone), never pure black/white -------------- */
+  --color-paper: oklch(0.986 0.012 84);      /* page background — warm bone */
+  --color-paper-2: oklch(0.966 0.016 80);    /* alternating sections, cards */
+  --color-line: oklch(0.90 0.014 78);        /* hairline borders */
+  --color-fg: oklch(0.33 0.02 214);          /* body text */
+  --color-muted: oklch(0.50 0.018 214);      /* secondary text, captions (AA on paper) */
+  --color-cream: oklch(0.97 0.014 84);       /* text on the teal band */
+
+  /* --- Feedback ---------------------------------------------------------- */
+  --color-success: oklch(0.60 0.12 155);
+  --color-danger: oklch(0.57 0.17 27);
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* --- Radii / elevation ------------------------------------------------- */
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+  --shadow-soft: 0 1px 2px oklch(0.28 0.035 212 / 0.05),
+    0 10px 30px oklch(0.28 0.035 212 / 0.08);
+  --shadow-lift: 0 18px 50px oklch(0.28 0.035 212 / 0.16);
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Base (layered so Tailwind utilities like text-cream can override) ----- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* sticky header offset for anchor jumps */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+    line-height: 1.05;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 2.5px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+}
+
+/* Fluid section rhythm helper */
+.section-y { padding-block: clamp(3.5rem, 8vw, 7rem); }
+
+/* --- Scroll reveal (robust: visible by default, JS-gated) -----------------
+   Content is ALWAYS visible without JS. Only when JS is confirmed (html.js)
+   do we hide-then-reveal, so a hydration failure never blanks a section. */
+.reveal {
+  transition:
+    opacity 0.7s var(--ease-out-quint),
+    transform 0.7s var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  will-change: opacity, transform;
+}
+html.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Step path line grows in with its section. */
+.reveal-line { transform-origin: top; }
+html.js .reveal-line { transform: scaleY(0); transition: transform 0.7s var(--ease-out-quint); }
+html.js .reveal-line.is-visible { transform: scaleY(1); }
+
+/* --- Accordion (FAQ): animate grid-template-rows, not height -------------- */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease-out-quint);
+}
+.accordion-panel > div { overflow: hidden; }
+details[open] .accordion-panel { grid-template-rows: 1fr; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal-line { transform: none; transition: none; }
+  .accordion-panel { transition: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
