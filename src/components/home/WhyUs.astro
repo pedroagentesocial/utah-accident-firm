@@ -1,5 +1,9 @@
 ---
-/** Why us: side-by-side contrast, "on your own" vs "with us". */
+/**
+ * Why not do it yourself: paired problem -> solution comparison. Each "on your
+ * own" pain (left) maps to the matching "with us" relief (right), joined by an
+ * arrow. The alone[] and withUs[] arrays are parallel, index for index.
+ */
 import { getLangFromUrl } from '../../i18n/utils';
 import { home } from '../../i18n/home';
 import Reveal from '../ui/Reveal.astro';
@@ -8,8 +12,8 @@ import SectionLabel from '../ui/SectionLabel.astro';
 const lang = getLangFromUrl(Astro.url);
 const c = home[lang].why;
 ---
-<section id="why" class="section-y bg-paper">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+<section id="why" class="section-y bg-brand-soft/40">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
     <Reveal>
       <div class="max-w-2xl">
         <SectionLabel tone="brand">{c.kicker}</SectionLabel>
@@ -18,34 +22,40 @@ const c = home[lang].why;
       </div>
     </Reveal>
 
-    <div class="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
-      <Reveal class="rounded-card border border-line bg-paper-2 p-6 sm:p-8">
-        <h3 class="text-lg text-muted">{c.aloneTitle}</h3>
-        <ul role="list" class="mt-5 space-y-3.5">
-          {c.alone.map((point) => (
-            <li class="flex items-start gap-3 text-fg">
-              <svg class="mt-0.5 h-5 w-5 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                <path d="M18 6 6 18M6 6l12 12" />
-              </svg>
-              <span class="leading-snug">{point}</span>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
+    <!-- Column headers (desktop) -->
+    <div class="mt-10 hidden items-center gap-4 px-1 sm:grid sm:grid-cols-[1fr_2.5rem_1fr]">
+      <p class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+        {c.aloneTitle}
+      </p>
+      <span aria-hidden="true"></span>
+      <p class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-brand-deep">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+        {c.withUsTitle}
+      </p>
+    </div>
 
-      <Reveal delay={100} class="rounded-card bg-brand p-6 text-cream shadow-lift sm:p-8">
-        <h3 class="text-lg text-cream">{c.withUsTitle}</h3>
-        <ul role="list" class="mt-5 space-y-3.5">
-          {c.withUs.map((point) => (
-            <li class="flex items-start gap-3">
-              <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
-              <span class="leading-snug text-cream">{point}</span>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
+    <div class="mt-4 space-y-3">
+      {c.alone.map((point, i) => (
+        <Reveal delay={i * 70}>
+          <div class="grid items-stretch gap-3 rounded-card border border-line bg-paper p-3 shadow-soft sm:grid-cols-[1fr_2.5rem_1fr] sm:gap-2 sm:p-3.5">
+            <!-- problem -->
+            <div class="flex items-start gap-2.5 rounded-xl bg-paper-2 px-4 py-3">
+              <svg class="mt-0.5 h-5 w-5 shrink-0 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+              <span class="text-sm leading-snug text-muted">{point}</span>
+            </div>
+            <!-- connector -->
+            <div class="flex items-center justify-center py-1 text-brand sm:py-0">
+              <svg class="h-5 w-5 rotate-90 sm:rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </div>
+            <!-- solution -->
+            <div class="flex items-start gap-2.5 rounded-xl bg-brand px-4 py-3 text-cream">
+              <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              <span class="text-sm font-medium leading-snug text-cream">{c.withUs[i]}</span>
+            </div>
+          </div>
+        </Reveal>
+      ))}
     </div>
   </div>
 </section>

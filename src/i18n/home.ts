@@ -101,10 +101,15 @@ export const home = {
       emptyTitle: 'Real reviews, coming soon',
       emptyBody:
         'We will not post fake testimonials. As clients share their experience, their words will appear here.',
+      sampleBadge: 'Sample',
+      sampleNote: 'Illustrative examples to preview the layout. Real, consented client reviews will appear here.',
     },
     faq: {
       kicker: 'Questions',
       title: 'Straight answers, before you decide',
+      more: 'Still have a question?',
+      moreBody: 'Ask us directly. A real person answers, in English or Spanish, and the first conversation is free.',
+      cta: 'Start my claim',
       items: [
         {
           q: 'How much does it cost?',
@@ -239,10 +244,15 @@ export const home = {
       emptyTitle: 'Reseñas reales, muy pronto',
       emptyBody:
         'No publicamos testimonios falsos. A medida que los clientes compartan su experiencia, sus palabras aparecerán aquí.',
+      sampleBadge: 'Ejemplo',
+      sampleNote: 'Ejemplos ilustrativos para previsualizar el diseño. Aquí aparecerán reseñas reales de clientes, con su consentimiento.',
     },
     faq: {
       kicker: 'Preguntas',
       title: 'Respuestas claras, antes de decidir',
+      more: '¿Le queda una pregunta?',
+      moreBody: 'Pregúntenos directamente. Le responde una persona real, en inglés o español, y la primera conversación es gratis.',
+      cta: 'Iniciar mi reclamo',
       items: [
         {
           q: '¿Cuánto cuesta?',

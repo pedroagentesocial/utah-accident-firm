@@ -1,8 +1,10 @@
 ---
-/** FAQ: animated accordion (one open by default) + FAQPage JSON-LD. */
+/** FAQ: two-column (sticky heading + contact CTA | accordion) + FAQPage JSON-LD. */
 import { getLangFromUrl } from '../../i18n/utils';
 import { home } from '../../i18n/home';
+import Reveal from '../ui/Reveal.astro';
 import SectionLabel from '../ui/SectionLabel.astro';
+import Button from '../ui/Button.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const c = home[lang].faq;
@@ -17,25 +19,45 @@ const faqSchema = {
   })),
 };
 ---
-<section id="faq" class="section-y bg-paper">
-  <div class="mx-auto max-w-3xl px-4 sm:px-6">
-    <div class="max-w-2xl">
-      <SectionLabel tone="brand">{c.kicker}</SectionLabel>
-      <h2 class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]">{c.title}</h2>
+<section id="faq" class="section-y scroll-mt-20 bg-paper">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+    <!-- Left: heading + contact prompt (sticky on desktop) -->
+    <div class="lg:sticky lg:top-24 lg:self-start">
+      <Reveal>
+        <SectionLabel tone="brand">{c.kicker}</SectionLabel>
+        <h2 class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]">{c.title}</h2>
+
+        <div class="mt-7 rounded-card border border-line bg-paper-2 p-6">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-brand-soft text-brand">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" />
+            </svg>
+          </span>
+          <p class="mt-4 font-display text-lg font-semibold text-ink">{c.more}</p>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{c.moreBody}</p>
+          <Button href="#contact" variant="amber" class="mt-5">
+            {c.cta}
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </Button>
+        </div>
+      </Reveal>
     </div>
 
-    <div class="mt-10 divide-y divide-line border-y border-line">
+    <!-- Right: accordion -->
+    <div class="divide-y divide-line border-t border-line">
       {c.items.map((it, i) => (
         <details class="group" open={i === 0} name="faq">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left [&::-webkit-details-marker]:hidden">
-            <span class="text-lg font-semibold text-ink">{it.q}</span>
-            <svg class="h-5 w-5 shrink-0 text-brand transition-transform duration-300 group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m6 9 6 6 6-6" />
-            </svg>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg py-5 text-left transition-colors group-hover:text-brand [&::-webkit-details-marker]:hidden">
+            <span class="text-lg font-semibold text-ink transition-colors group-hover:text-brand">{it.q}</span>
+            <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-brand transition-all duration-300 group-open:rotate-180 group-open:border-brand group-open:bg-brand-soft">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </span>
           </summary>
           <div class="accordion-panel">
             <div>
-              <p class="pb-5 pr-8 leading-relaxed text-muted">{it.a}</p>
+              <p class="pb-5 pr-2 leading-relaxed text-muted sm:pr-10">{it.a}</p>
             </div>
           </div>
         </details>

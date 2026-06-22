@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/home/Hero.astro';
-import Services from '../../components/home/Services.astro';
-import HowItWorks from '../../components/home/HowItWorks.astro';
+import WhatWeDo from '../../components/home/WhatWeDo.astro';
 import WhyUs from '../../components/home/WhyUs.astro';
 import Situations from '../../components/home/Situations.astro';
 import Trust from '../../components/home/Trust.astro';
@@ -15,8 +14,7 @@ const t = useTranslations('en');
 ---
 <BaseLayout title={t.seo.home.title} description={t.seo.home.description}>
   <Hero />
-  <Services />
-  <HowItWorks />
+  <WhatWeDo />
   <WhyUs />
   <Situations />
   <Trust />
