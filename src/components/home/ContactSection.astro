@@ -3,6 +3,7 @@
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import { home } from '../../i18n/home';
 import { business } from '../../data/business';
+import { images } from '../../data/images';
 import { privacyHref } from '../../lib/contact';
 import ContactForm from '../islands/ContactForm.tsx';
 import ContactChannels from '../ui/ContactChannels.astro';
@@ -14,6 +15,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const c = home[lang].contact;
 const a = business.address;
+const img = images.support;
 ---
 <section id="contact" class="section-y scroll-mt-20 bg-paper-2">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
@@ -38,6 +40,19 @@ const a = business.address;
     </div>
 
     <div class="lg:pt-2">
+      <Reveal class="mb-5 overflow-hidden rounded-card shadow-soft">
+        <img
+          src={img.src}
+          alt={img.alt[lang]}
+          width="1200"
+          height="900"
+          loading="lazy"
+          decoding="async"
+          class="aspect-[4/3] w-full object-cover sm:aspect-[16/10]"
+        />
+        {/* [STOCK PROVISIONAL — reemplazar con foto real del equipo] */}
+      </Reveal>
+
       <div class="rounded-card border border-line bg-paper p-6 shadow-soft sm:p-7">
         <p class="text-sm font-semibold text-ink">{c.orReach}</p>
         <ContactChannels layout="stack" class="mt-4" />

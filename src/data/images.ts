@@ -24,6 +24,15 @@ export const images = {
       es: 'Montañas sobre el valle de Salt Lake en Utah',
     },
   },
+  // Contact: a real person on a headset, ready to help. Local asset (Unsplash,
+  // free for commercial use), optimized in /public/img/support.jpg.
+  support: {
+    src: '/img/support.jpg',
+    alt: {
+      en: 'A friendly team member wearing a headset, ready to help by phone',
+      es: 'Un miembro del equipo con audífonos, listo para ayudar por teléfono',
+    },
+  },
 } as const;
 
 /** Default Open Graph / Twitter share image (1200x630). PROVISIONAL stock. */
