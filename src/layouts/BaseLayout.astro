@@ -34,7 +34,7 @@ const t = useTranslations(lang);
       {t.common.skipToContent}
     </a>
     <Header />
-    <main id="main">
+    <main id="main" class="pt-16">
       <slot />
     </main>
     <Footer />
@@ -72,6 +72,35 @@ const t = useTranslations(lang);
       }
       initReveal();
       document.addEventListener('astro:page-load', initReveal);
+
+      // Header: transparent over the home hero, solid once scrolled past it.
+      let headerScroll: (() => void) | null = null;
+      function initHeader() {
+        if (headerScroll) {
+          window.removeEventListener('scroll', headerScroll);
+          window.removeEventListener('resize', headerScroll);
+          headerScroll = null;
+        }
+        const h = document.getElementById('site-header');
+        if (!h) return;
+        if (h.getAttribute('data-home') !== 'true') {
+          h.removeAttribute('data-overlay');
+          return;
+        }
+        const hero = document.getElementById('hero');
+        const update = () => {
+          const hb = h.offsetHeight || 64;
+          const threshold = hero ? hero.offsetHeight - hb - 8 : 120;
+          if (window.scrollY < threshold) h.setAttribute('data-overlay', 'true');
+          else h.removeAttribute('data-overlay');
+        };
+        headerScroll = update;
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+      }
+      initHeader();
+      document.addEventListener('astro:page-load', initHeader);
     </script>
   </body>
 </html>

@@ -124,8 +124,37 @@ html.js .reveal-line.is-visible { transform: scaleY(1); }
 .accordion-panel > div { overflow: hidden; }
 details[open] .accordion-panel { grid-template-rows: 1fr; }
 
+/* --- Hero background motion (slow Ken Burns drift) ------------------------ */
+.hero-kenburns {
+  animation: heroKenBurns 24s var(--ease-out-quint) infinite alternate;
+  will-change: transform;
+}
+@keyframes heroKenBurns {
+  from { transform: scale(1.05) translate3d(0, 0, 0); }
+  to   { transform: scale(1.16) translate3d(-2%, -1.5%, 0); }
+}
+
+/* --- Header overlay: transparent over the hero, solid after scrolling ----- */
+#site-header {
+  transition: background-color 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+#site-header[data-overlay='true'] {
+  background-color: transparent;
+  border-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+#site-header[data-overlay='true'] .hdr-link,
+#site-header[data-overlay='true'] .hdr-link * {
+  color: var(--color-cream) !important;
+}
+#site-header[data-overlay='true'] .hdr-outline {
+  border-color: oklch(0.97 0.014 84 / 0.45) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .hero-kenburns { animation: none; transform: scale(1.05); }
   html.js .reveal { opacity: 1; transform: none; transition: none; }
   html.js .reveal-line { transform: none; transition: none; }
   .accordion-panel { transition: none; }

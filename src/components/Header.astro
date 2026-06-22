@@ -17,6 +17,11 @@ const localize = useTranslatedPath(lang);
 const home = localize();
 const wa = whatsappHref(lang);
 
+// Home pages open with a full-screen hero → the header overlays it transparently
+// (it turns solid on scroll, handled by initHeader in BaseLayout).
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isHome = ['/', '/en', '/es'].includes(path);
+
 // Home-anchored links (work from any page, e.g. the privacy page).
 const links = [
   { href: `${home}#how`, label: t.nav.how },
@@ -26,20 +31,25 @@ const links = [
   { href: `${home}#contact`, label: t.nav.contact },
 ];
 ---
-<header class="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur">
+<header
+  id="site-header"
+  data-home={isHome ? 'true' : 'false'}
+  data-overlay={isHome ? 'true' : undefined}
+  class="fixed inset-x-0 top-0 z-50 border-b border-line bg-paper/90 backdrop-blur"
+>
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:px-6">
-    <a href={home} class="inline-flex shrink-0" aria-label={business.name}>
+    <a href={home} class="hdr-link inline-flex shrink-0" aria-label={business.name}>
       <Wordmark />
     </a>
 
     <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
       {links.map((l) => (
-        <a href={l.href} class="text-sm font-medium text-fg transition-colors hover:text-brand">{l.label}</a>
+        <a href={l.href} class="hdr-link text-sm font-medium text-fg transition-colors hover:text-brand">{l.label}</a>
       ))}
     </nav>
 
     <div class="flex items-center gap-2">
-      <LanguageSwitcher />
+      <LanguageSwitcher class="hdr-link hdr-outline" />
 
       <!-- Mobile: compact Call icon (WhatsApp lives in the menu + floating button) -->
       <a href={telHref} aria-label={t.channels.call} class="grid h-10 w-10 place-items-center rounded-pill bg-accent text-ink shadow-soft transition-colors hover:bg-accent-deep sm:hidden">
@@ -68,7 +78,7 @@ const links = [
 
       <!-- Mobile nav menu -->
       <details class="relative lg:hidden [&:not([open])>div]:hidden">
-        <summary class="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-pill border border-line text-fg [&::-webkit-details-marker]:hidden" aria-label={t.nav.menu}>
+        <summary class="hdr-link hdr-outline grid h-10 w-10 cursor-pointer list-none place-items-center rounded-pill border border-line text-fg [&::-webkit-details-marker]:hidden" aria-label={t.nav.menu}>
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>

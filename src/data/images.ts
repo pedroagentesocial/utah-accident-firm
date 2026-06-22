@@ -8,6 +8,15 @@ function unsplash(id: string, w = 1400, q = 72) {
 }
 
 export const images = {
+  // Hero full-bleed background: a calm Utah mountain road. Local asset (Unsplash,
+  // free for commercial use), optimized in /public/img/hero-bg.jpg.
+  heroBg: {
+    src: '/img/hero-bg.jpg',
+    alt: {
+      en: 'A scenic mountain road winding through the Utah landscape',
+      es: 'Un camino escénico de montaña a través del paisaje de Utah',
+    },
+  },
   // Hero: a person in their car, calmly making a call after an incident.
   heroCall: {
     src: unsplash('1685893417834-1fb3b2a7121f', 1300),
