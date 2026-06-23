@@ -42,6 +42,23 @@ export const images = {
       es: 'Un miembro del equipo con audífonos, listo para ayudar por teléfono',
     },
   },
+  // Contact: real brand photo shown in the form-section media carousel.
+  contactForm: {
+    src: '/img/form.jpg',
+    alt: {
+      en: 'Our team ready to help with your accident claim',
+      es: 'Nuestro equipo listo para ayudarte con tu reclamo por accidente',
+    },
+  },
+  // Contact: short brand video shown alongside the photo in the carousel.
+  contactVideo: {
+    src: '/hero.mp4',
+    poster: '/img/form.jpg',
+    alt: {
+      en: 'A short video introducing our firm',
+      es: 'Un breve video que presenta a nuestra firma',
+    },
+  },
 } as const;
 
 /** Default Open Graph / Twitter share image (1200x630). PROVISIONAL stock. */

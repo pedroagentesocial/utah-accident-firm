@@ -11,11 +11,24 @@ import type { Lang } from './ui';
 export const home = {
   en: {
     hero: {
-      eyebrow: 'Utah · Free, no obligation',
-      title: 'Had a car accident?',
-      titleAccent: 'We take it from here.',
-      subtitle:
-        'Take a breath. We file your insurance claim, push for a fair payout, and get your car repaired, so you can focus on getting back to normal.',
+      // Two rotating angles so the hero speaks to different visitors:
+      // 1) emotional relief, 2) the payout / bilingual outcome.
+      slides: [
+        {
+          eyebrow: 'Utah · Free, no obligation',
+          title: 'Had a car accident?',
+          titleAccent: 'We take it from here.',
+          subtitle:
+            'Take a breath. We file your insurance claim, push for a fair payout, and get your car repaired, so you can focus on getting back to normal.',
+        },
+        {
+          eyebrow: 'English & Spanish · Same-day reply',
+          title: 'Insurance offer feels low?',
+          titleAccent: 'We push for what’s fair.',
+          subtitle:
+            'Insurers start low and move fast. We handle the claim, the calls, and the paperwork, and push for what your accident is really worth.',
+        },
+      ],
       reassurance: 'A real person answers, same day. In English and Spanish.',
     },
     services: {
@@ -154,11 +167,24 @@ export const home = {
 
   es: {
     hero: {
-      eyebrow: 'Utah · Gratis y sin compromiso',
-      title: '¿Tuviste un accidente de auto?',
-      titleAccent: 'Nosotros nos encargamos.',
-      subtitle:
-        'Respira. Tramitamos su reclamo de seguro, abogamos por un pago justo y reparamos su auto, para que usted se enfoque en volver a la normalidad.',
+      // Dos ángulos que rotan para hablarle a distintos visitantes:
+      // 1) alivio emocional, 2) el pago justo / atención bilingüe.
+      slides: [
+        {
+          eyebrow: 'Utah · Gratis y sin compromiso',
+          title: '¿Tuviste un accidente de auto?',
+          titleAccent: 'Nosotros nos encargamos.',
+          subtitle:
+            'Respira. Tramitamos su reclamo de seguro, abogamos por un pago justo y reparamos su auto, para que usted se enfoque en volver a la normalidad.',
+        },
+        {
+          eyebrow: 'Español e inglés · Respuesta el mismo día',
+          title: '¿La aseguradora ofrece poco?',
+          titleAccent: 'Buscamos un pago justo.',
+          subtitle:
+            'Las aseguradoras ofrecen poco y se mueven rápido. Manejamos el reclamo, las llamadas y el papeleo, y luchamos por lo que su accidente realmente vale.',
+        },
+      ],
       reassurance: 'Le contesta una persona real, el mismo día. En inglés y español.',
     },
     services: {

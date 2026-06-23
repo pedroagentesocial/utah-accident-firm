@@ -15,7 +15,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const c = home[lang].contact;
 const a = business.address;
-const img = images.support;
+const img = images.contactForm;
 ---
 <section id="contact" class="section-y scroll-mt-20 bg-paper-2">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
@@ -50,7 +50,6 @@ const img = images.support;
           decoding="async"
           class="aspect-[4/3] w-full object-cover sm:aspect-[16/10]"
         />
-        {/* [STOCK PROVISIONAL — reemplazar con foto real del equipo] */}
       </Reveal>
 
       <div class="rounded-card border border-line bg-paper p-6 shadow-soft sm:p-7">
