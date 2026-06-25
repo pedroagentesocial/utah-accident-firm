@@ -226,7 +226,7 @@ export const home = {
       kicker: '¿Por qué no hacerlo por ti mismo?',
       title: 'Hacerlo solo sale más caro de lo que crees',
       intro: 'El proceso del seguro está diseñado para agotarte. Esta es la diferencia.',
-      aloneTitle: 'Por tu cuenta',
+      aloneTitle: 'Por ti mismo',
       alone: [
         'Horas en espera con la aseguradora',
         'Es fácil aceptar una oferta baja sin darte cuenta',
