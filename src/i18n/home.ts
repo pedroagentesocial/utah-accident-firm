@@ -1,7 +1,7 @@
 /**
  * Home page content, English + US Spanish (es-US, Latino-neutral).
  * Tone: relief, "we take over", plain language, no legal/insurance jargon.
- * Rules: usted (no "vosotros"), dollars, Utah context. No em dashes.
+ * Rules: Spanish uses tú (informal, close; no "vosotros"), dollars, Utah context. No em dashes.
  *
  * NOTE: pricing answers in the FAQ are intentionally generic (we don't invent a
  * fee model). Replace the TODO-marked lines with the client's real terms.
@@ -175,76 +175,76 @@ export const home = {
           title: '¿Tuviste un accidente de auto?',
           titleAccent: 'Nosotros nos encargamos.',
           subtitle:
-            'Respira. Tramitamos su reclamo de seguro, abogamos por un pago justo y reparamos su auto, para que usted se enfoque en volver a la normalidad.',
+            'Respira. Tramitamos tu reclamo de seguro, abogamos por un pago justo y reparamos tu auto, para que te enfoques en volver a la normalidad.',
         },
         {
           eyebrow: 'Español e inglés · Respuesta el mismo día',
-          title: '¿La aseguradora ofrece poco?',
-          titleAccent: 'Buscamos un pago justo.',
+          title: 'La oferta del seguro tiende a ser baja',
+          titleAccent: 'Nosotros te buscamos un pago justo.',
           subtitle:
-            'Las aseguradoras ofrecen poco y se mueven rápido. Manejamos el reclamo, las llamadas y el papeleo, y luchamos por lo que su accidente realmente vale.',
+            'Las aseguradoras ofrecen poco y se mueven rápido. Manejamos el reclamo, las llamadas y el papeleo, y luchamos por lo que tu accidente realmente vale.',
         },
       ],
-      reassurance: 'Le contesta una persona real, el mismo día. En inglés y español.',
+      reassurance: 'Te contesta una persona real, el mismo día. En inglés y español.',
     },
     services: {
-      kicker: 'Qué hacemos por usted',
+      kicker: 'Qué hacemos por ti',
       title: 'Tres cosas menos de qué preocuparse, desde hoy',
       intro:
-        'Tras un choque hay un montón de llamadas, formularios y decisiones. Nosotros nos encargamos de todo.',
+        'Después de un choque hay un montón de llamadas, formularios y decisiones. Nosotros nos encargamos de todo.',
       items: [
         {
           n: '01',
-          title: 'Gestionamos su reclamo',
-          desc: 'Tramitamos y gestionamos su reclamo de seguro de auto de principio a fin. El papeleo, las llamadas, los plazos, los ajustadores: todo resuelto.',
+          title: 'Gestionamos tu reclamo',
+          desc: 'Tramitamos tu reclamo de seguro de auto de principio a fin: el papeleo, las llamadas, los plazos y los ajustadores, todo resuelto.',
         },
         {
           n: '02',
           title: 'Abogamos por un pago justo',
-          desc: 'Las aseguradoras suelen ofrecer poco. Sabemos cuánto vale realmente su reclamo y lo defendemos, para que no le paguen de menos.',
+          desc: 'Las aseguradoras suelen ofrecer poco. Sabemos cuánto vale realmente tu reclamo y lo defendemos, para que no te paguen de menos.',
         },
         {
           n: '03',
           title: 'Coordinamos la reparación',
-          desc: 'Conseguimos un taller de confianza, coordinamos el presupuesto y damos seguimiento hasta que su auto esté reparado y bien.',
+          desc: 'Conseguimos un taller de confianza, coordinamos el presupuesto y damos seguimiento hasta que tu auto quede reparado y en buenas condiciones.',
         },
       ],
     },
     how: {
       kicker: 'Cómo funciona',
-      title: 'Cuatro pasos tranquilos, y casi todos los hacemos nosotros',
-      intro: 'Usted se mantiene informado. Nosotros hacemos el trabajo pesado.',
+      title: 'Cuatro pasos sencillos, y casi todos los hacemos nosotros',
+      intro: 'Tú te mantienes informado. Nosotros hacemos el trabajo pesado.',
       steps: [
-        { title: 'Usted nos contacta', desc: 'Llame, escriba por WhatsApp o envíe el formulario. Con un solo mensaje empezamos.' },
-        { title: 'Nos cuenta qué pasó', desc: 'Una conversación corta y amable. Escuchamos y le explicamos sus opciones en palabras claras.' },
-        { title: 'Hablamos con el seguro y el taller', desc: 'Tratamos con la aseguradora y el taller en su nombre, y lo mantenemos al tanto.' },
-        { title: 'Recibe su auto y su pago', desc: 'Se va con el auto reparado y pagado de forma justa. Seguimos hasta cerrar su reclamo.' },
+        { title: 'Tú nos contactas', desc: 'Llama, escribe por WhatsApp o envía el formulario. Con un solo mensaje empezamos.' },
+        { title: 'Nos cuentas qué pasó', desc: 'Una conversación corta y amable. Escuchamos y te explicamos tus opciones con palabras sencillas.' },
+        { title: 'Hablamos con el seguro y el taller', desc: 'Tratamos con la aseguradora y el taller en tu nombre, y te mantenemos al tanto.' },
+        { title: 'Recibes tu auto y tu pago', desc: 'Te vas con tu auto reparado y con un pago justo. Seguimos hasta cerrar tu reclamo.' },
       ],
-      note: 'Sin jerga legal. Sin vueltas. Solo su reclamo, resuelto.',
+      note: 'Sin términos legales complicados. Sin vueltas. Solo tu reclamo, resuelto.',
     },
     why: {
-      kicker: 'Por qué no hacerlo solo',
-      title: 'Hacerlo solo cuesta más de lo que parece',
-      intro: 'El proceso del seguro está hecho para cansarlo. Esta es la diferencia.',
-      aloneTitle: 'Por su cuenta',
+      kicker: '¿Por qué no hacerlo por ti mismo?',
+      title: 'Hacerlo solo sale más caro de lo que crees',
+      intro: 'El proceso del seguro está diseñado para agotarte. Esta es la diferencia.',
+      aloneTitle: 'Por tu cuenta',
       alone: [
         'Horas en espera con la aseguradora',
-        'Es fácil aceptar una oferta baja sin darse cuenta',
-        'Una palabra equivocada puede reducir lo que le pagan',
-        'Perseguir usted mismo al taller y el presupuesto',
+        'Es fácil aceptar una oferta baja sin darte cuenta',
+        'Una palabra equivocada puede reducir lo que te pagan',
+        'Andar tú mismo detrás del taller y el presupuesto',
       ],
       withUsTitle: 'Con nosotros',
       withUs: [
         'Nosotros hacemos las llamadas y el papeleo',
-        'Sabemos cómo se ve realmente un pago justo',
-        'Protegemos su reclamo de errores costosos',
+        'Sabemos en qué consiste un pago justo de verdad',
+        'Protegemos tu reclamo de errores costosos',
         'Coordinamos la reparación de principio a fin',
       ],
     },
     situations: {
       kicker: 'Situaciones que atendemos',
       title: 'Si pasó en una carretera de Utah, podemos ayudar',
-      intro: '¿No sabe si su caso aplica? Pregúntenos. Es gratis.',
+      intro: '¿No sabes si tu caso aplica? Pregúntanos. Es gratis.',
       items: [
         'Choques por alcance',
         'Accidentes en intersecciones',
@@ -252,15 +252,15 @@ export const home = {
         'Pérdida total',
         'Choque y fuga',
         'Conductor sin seguro o con seguro insuficiente',
-        'Culpa en disputa',
-        'Auto de alquiler y almacenamiento mientras espera',
+        'Disputas por la culpa',
+        'Auto de alquiler y almacenamiento mientras esperas',
       ],
     },
     trust: {
       kicker: 'Por qué confían en nosotros',
-      title: 'Ayuda tranquila y bilingüe cuando más la necesita',
+      title: 'Ayuda tranquila y bilingüe cuando más la necesitas',
       intro:
-        'Sin presión y sin jerga. Gente firme que trata con aseguradoras todos los días.',
+        'Sin presión ni términos complicados. Gente con experiencia que trata con aseguradoras todos los días.',
       statsNote: 'Las cifras se muestran una vez verificadas.',
     },
     testimonials: {
@@ -276,46 +276,46 @@ export const home = {
     faq: {
       kicker: 'Preguntas',
       title: 'Respuestas claras, antes de decidir',
-      more: '¿Le queda una pregunta?',
-      moreBody: 'Pregúntenos directamente. Le responde una persona real, en inglés o español, y la primera conversación es gratis.',
+      more: '¿Aún tienes dudas?',
+      moreBody: 'Pregúntanos directamente. Te responde una persona real, en inglés o español, y la primera conversación es gratis.',
       cta: 'Iniciar mi reclamo',
       items: [
         {
           q: '¿Cuánto cuesta?',
-          a: 'La primera conversación es gratis y sin compromiso. Le explicamos exactamente cómo funciona nuestro servicio, y cualquier costo, antes de que usted decida algo.',
+          a: 'La primera conversación es gratis y sin compromiso. Te explicamos exactamente cómo funciona nuestro servicio, y cualquier costo, antes de que decidas algo.',
         },
         {
           q: '¿Cómo cobran?',
-          a: 'Somos claros sobre cómo cobramos antes de que usted se comprometa, así no hay sorpresas. Conocerá los términos antes de aceptar nada.',
+          a: 'Somos claros sobre cómo cobramos antes de que te comprometas, así no hay sorpresas. Conocerás los términos antes de aceptar nada.',
         },
         {
           q: '¿Y si el accidente fue mi culpa?',
-          a: 'Es posible que aún pueda recuperar por su vehículo y otros gastos, según su cobertura. Cuéntenos qué pasó y le explicamos sus opciones.',
+          a: 'Es posible que aún puedas recibir compensación por tu vehículo y otros gastos, según tu cobertura. Cuéntanos qué pasó y te explicamos tus opciones.',
         },
         {
           q: '¿Trabajan con mi aseguradora?',
-          a: 'Sí. Trabajamos con todas las aseguradoras importantes que operan en Utah y tratamos con ellas directamente en su nombre.',
+          a: 'Sí. Trabajamos con todas las aseguradoras importantes que operan en Utah y tratamos con ellas directamente en tu nombre.',
         },
         {
           q: '¿Son abogados?',
-          a: 'No. Utah Accident Firm no es un despacho de abogados y no brinda asesoría, servicios ni representación legal. Gestionamos su reclamo de seguro y coordinamos su reparación. Para asuntos legales, consulte a un abogado con licencia.',
+          a: 'No. Utah Accident Firm no es un despacho de abogados y no brinda asesoría, servicios ni representación legal. Gestionamos tu reclamo de seguro y coordinamos tu reparación. Para asuntos legales, consulta a un abogado con licencia.',
         },
         {
           q: '¿Qué tan rápido pueden empezar?',
-          a: 'De inmediato. Mientras antes nos contacte tras el accidente, más podemos hacer. Llame, escriba por WhatsApp o envíe el formulario y respondemos rápido.',
+          a: 'De inmediato. Cuanto antes nos contactes después del accidente, más podemos hacer. Llama, escribe por WhatsApp o envía el formulario y respondemos rápido.',
         },
         {
           q: '¿Hablan español?',
-          a: 'Sí, completamente. Puede hacer todo con nosotros en inglés o en español.',
+          a: 'Sí, completamente. Puedes hacer todo con nosotros en inglés o en español.',
         },
       ],
     },
     contact: {
-      kicker: 'Inicie su reclamo',
-      title: 'Cuéntenos qué pasó',
+      kicker: 'Inicia tu reclamo',
+      title: 'Cuéntanos qué pasó',
       intro:
-        'Envíe unos datos y le respondemos rápido. ¿Prefiere hablar ahora? Llame o escriba por WhatsApp.',
-      orReach: 'O contáctenos directamente',
+        'Envíanos algunos datos y te respondemos rápido. ¿Prefieres hablar ahora? Llama o escribe por WhatsApp.',
+      orReach: 'O contáctanos directamente',
     },
   },
 } as const;

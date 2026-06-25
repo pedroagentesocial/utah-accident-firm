@@ -72,47 +72,47 @@ export const privacy: Record<Lang, Legal> = {
     title: 'Política de Privacidad',
     updated: 'Última actualización: junio de 2026', // TODO: confirmar fecha de vigencia
     intro:
-      'Esta política explica qué información recopila Utah Accident Firm cuando usted nos contacta, cómo la usamos y las opciones que tiene. Utah Accident Firm no es un despacho de abogados y no brinda asesoría ni representación legal.',
+      'Esta política explica qué información recopila Utah Accident Firm cuando nos contactas, cómo la usamos y las opciones que tienes. Utah Accident Firm no es un despacho de abogados y no brinda asesoría ni representación legal.',
     sections: [
       {
         heading: 'Información que recopilamos',
         body: [
-          'Cuando envía nuestro formulario de contacto o nos escribe por teléfono o WhatsApp, recopilamos los datos que usted nos da: su nombre, su número de teléfono y una breve descripción de su accidente. No exigimos ninguna otra información para contactarlo.',
+          'Cuando envías nuestro formulario de contacto o nos escribes por teléfono o WhatsApp, recopilamos los datos que nos das: tu nombre, tu número de teléfono y una breve descripción de tu accidente. No exigimos ninguna otra información para contactarte.',
         ],
       },
       {
-        heading: 'Cómo usamos su información',
+        heading: 'Cómo usamos tu información',
         body: [
-          'Usamos su información solo para responder a su consulta, conversar sobre su situación y, si decide trabajar con nosotros, gestionar su reclamo de seguro y coordinar la reparación de su vehículo. Lo contactamos por el teléfono o el canal que nos indicó.',
+          'Usamos tu información solo para responder a tu consulta, conversar sobre tu situación y, si decides trabajar con nosotros, gestionar tu reclamo de seguro y coordinar la reparación de tu vehículo. Te contactamos por el teléfono o el canal que nos indicaste.',
         ],
       },
       {
         heading: 'Con quién la compartimos',
         body: [
-          'Para hacer el trabajo que usted nos pide, podemos compartir los datos necesarios con la aseguradora correspondiente y el taller de reparación en su nombre. No vendemos su información personal.',
+          'Para hacer el trabajo que nos pides, podemos compartir los datos necesarios con la aseguradora correspondiente y el taller de reparación en tu nombre. No vendemos tu información personal.',
         ],
       },
       {
         heading: 'Conservación de datos',
         body: [
-          'Conservamos su información durante el tiempo necesario para ayudarlo y cumplir con nuestras obligaciones de registro, y luego la eliminamos de forma segura.', // TODO: indicar un plazo específico
+          'Conservamos tu información durante el tiempo necesario para ayudarte y cumplir con nuestras obligaciones de registro, y luego la eliminamos de forma segura.', // TODO: indicar un plazo específico
         ],
       },
       {
-        heading: 'Sus opciones',
+        heading: 'Tus opciones',
         body: [
-          'Puede pedirnos que actualicemos o eliminemos su información, o que dejemos de contactarlo, en cualquier momento. Solo escríbanos con los datos de contacto que aparecen abajo.',
+          'Puedes pedirnos que actualicemos o eliminemos tu información, o que dejemos de contactarte, en cualquier momento. Solo escríbenos con los datos de contacto que aparecen abajo.',
         ],
       },
       {
         heading: 'Contacto',
         body: [
-          '¿Preguntas sobre esta política? Contáctenos por teléfono, WhatsApp o correo con los datos del pie de página del sitio.',
+          '¿Preguntas sobre esta política? Contáctanos por teléfono, WhatsApp o correo con los datos del pie de página del sitio.',
         ],
       },
     ],
     seoTitle: 'Política de Privacidad — Utah Accident Firm',
     seoDescription:
-      'Cómo Utah Accident Firm recopila, usa y protege su información cuando nos contacta para ayuda con un reclamo de seguro de auto.',
+      'Cómo Utah Accident Firm recopila, usa y protege tu información cuando nos contactas para ayuda con un reclamo de seguro de auto.',
   },
 };

@@ -29,7 +29,7 @@ export const trustPoints = {
   ],
   es: [
     'Atención bilingüe de principio a fin, en inglés y español',
-    'Hablamos con la aseguradora para que usted no tenga que hacerlo',
-    'Sin costo inicial para conversar sobre su accidente',
+    'Hablamos con la aseguradora para que tú no tengas que hacerlo',
+    'Sin costo inicial para conversar sobre tu accidente',
   ],
 };

@@ -109,7 +109,7 @@ export const ui = {
       respond: 'Respondemos rápido',
     },
     channels: {
-      call: 'Llámenos',
+      call: 'Llámanos',
       callShort: 'Llamar',
       whatsapp: 'WhatsApp',
       form: 'Enviar mensaje',
@@ -117,23 +117,23 @@ export const ui = {
       available: 'Atendemos en inglés y español',
     },
     form: {
-      name: 'Su nombre',
+      name: 'Tu nombre',
       phone: 'Teléfono',
       email: 'Correo (opcional)',
       city: 'Ciudad',
       message: '¿Qué pasó?',
-      messagePlaceholder: 'Unas palabras sobre su accidente…',
+      messagePlaceholder: 'Unas palabras sobre tu accidente…',
       consent: 'Acepto que me contacten sobre mi consulta y acepto la',
       privacyLink: 'Política de Privacidad',
       submit: 'Enviar',
       sending: 'Enviando…',
-      successTitle: 'Listo. Le contactaremos muy pronto.',
-      successBody: 'Gracias por escribir. Si es urgente, llame o escriba por WhatsApp ahora.',
+      successTitle: 'Listo. Te contactaremos muy pronto.',
+      successBody: 'Gracias por escribir. Si es urgente, llama o escribe por WhatsApp ahora.',
       errorTitle: 'Algo salió mal.',
-      errorBody: 'Inténtelo de nuevo, o contáctenos por llamada o WhatsApp.',
+      errorBody: 'Inténtalo de nuevo, o contáctanos por llamada o WhatsApp.',
       required: 'Requerido',
-      invalidEmail: 'Ingrese un correo válido',
-      consentRequired: 'Por favor acepte que le contactemos',
+      invalidEmail: 'Ingresa un correo válido',
+      consentRequired: 'Por favor acepta que te contactemos',
     },
     // ⚠️ LEGAL — debe permanecer visible. No suavizar ni eliminar.
     disclaimer: {
@@ -141,7 +141,7 @@ export const ui = {
       short:
         'Utah Accident Firm no es un despacho de abogados y no brinda asesoría ni representación legal.',
       full:
-        'Utah Accident Firm no es un despacho de abogados y no brinda asesoría legal, servicios legales ni representación legal. Somos un servicio de gestión de reclamos de seguro: tramitamos y gestionamos su reclamo de seguro de auto, abogamos por un pago justo y coordinamos la reparación de su vehículo. Para asuntos legales, consulte a un abogado con licencia.',
+        'Utah Accident Firm no es un despacho de abogados y no brinda asesoría legal, servicios legales ni representación legal. Somos un servicio de gestión de reclamos de seguro: tramitamos y gestionamos tu reclamo de seguro de auto, abogamos por un pago justo y coordinamos la reparación de tu vehículo. Para asuntos legales, consulta a un abogado con licencia.',
     },
     footer: {
       tagline: 'Gestión de reclamos de seguro y coordinación de reparación de autos en Utah.',
@@ -157,7 +157,7 @@ export const ui = {
       home: {
         title: 'Utah Accident Firm — Ayuda con Reclamos de Seguro de Auto en Utah',
         description:
-          'Tras un accidente de auto en Utah, gestionamos su reclamo de seguro, abogamos por un pago justo y coordinamos la reparación de su vehículo. No somos abogados. Consulta gratis.',
+          'Después de un accidente de auto en Utah, gestionamos tu reclamo de seguro, abogamos por un pago justo y coordinamos la reparación de tu vehículo. No somos abogados. Consulta gratis.',
       },
     },
   },
