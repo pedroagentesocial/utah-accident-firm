@@ -21,6 +21,10 @@ const ContactSchema = z.object({
   message: z.string().trim().max(2000).optional().default(''),
   // language of the form, for routing the reply
   lang: z.enum(['en', 'es']).optional().default('en'),
+  // which quiz/flow produced this lead (e.g. "quiz:coverage"), for triage
+  source: z.string().trim().max(40).optional(),
+  // quiz answers captured along the way (value strings), for context in the email
+  answers: z.record(z.string().max(120)).optional(),
   // explicit consent is REQUIRED to submit
   consent: z.coerce.boolean().refine((v) => v === true, {
     message: 'Consent is required',
@@ -75,12 +79,19 @@ export const POST: APIRoute = async ({ request }) => {
       ? `Nuevo reclamo: ${data.name}`
       : `New claim inquiry: ${data.name}`;
 
+  const answerLines =
+    data.answers && Object.keys(data.answers).length
+      ? Object.entries(data.answers).map(([k, v]) => `  - ${k}: ${v}`)
+      : [];
+
   const lines = [
     `Name: ${data.name}`,
     `Phone: ${data.phone}`,
     data.email ? `Email: ${data.email}` : null,
     data.city ? `City: ${data.city}` : null,
     `Language: ${data.lang}`,
+    data.source ? `Source: ${data.source}` : null,
+    ...(answerLines.length ? ['', 'Quiz answers:', ...answerLines] : []),
     '',
     data.message || '(no message)',
   ]

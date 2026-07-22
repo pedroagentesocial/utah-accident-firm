@@ -258,7 +258,7 @@ export const home = {
     },
     trust: {
       kicker: 'Por qué confían en nosotros',
-      title: 'Ayuda tranquila y bilingüe cuando más la necesitas',
+      title: 'Te ayudamos con calma, en español e inglés, cuando más lo necesitas',
       intro:
         'Sin presión ni términos complicados. Gente con experiencia que trata con aseguradoras todos los días.',
       statsNote: 'Las cifras se muestran una vez verificadas.',
