@@ -183,7 +183,7 @@ export default function ContactForm({ t, lang, privacyHref, privacyLink }: Props
               type="submit"
               disabled={status === 'submitting'}
               whileTap={{ scale: 0.98 }}
-              className="mt-1 inline-flex items-center justify-center gap-2 rounded-pill bg-accent px-6 py-3.5 text-base font-semibold text-ink shadow-soft transition-colors hover:bg-accent-deep disabled:opacity-70"
+              className="mt-1 inline-flex items-center justify-center gap-2 rounded-pill bg-accent px-6 py-3.5 text-base font-semibold text-cream shadow-soft transition-colors hover:bg-accent-deep disabled:opacity-70"
             >
               {status === 'submitting' ? t.sending : t.submit}
             </motion.button>

@@ -42,11 +42,18 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduce, setReduce] = useState(false);
+  // "lite" = reduced-motion OR data-saver / slow network → show the poster, never
+  // auto-download or autoplay the hero video (many users arrive on cellular).
+  const [lite, setLite] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const count = slides.length;
 
   useEffect(() => {
-    setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const r = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setReduce(r);
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const slow = Boolean(conn?.saveData) || /(^|-)2g$/.test(conn?.effectiveType ?? '');
+    setLite(r || slow);
   }, []);
 
   const paginate = (d: number) => setI((p) => (p + d + count) % count);
@@ -107,11 +114,11 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
                 ref={videoRef}
                 src={slide.src}
                 poster={slide.poster}
-                autoPlay
+                autoPlay={!lite}
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload={lite ? 'none' : 'metadata'}
                 aria-label={slide.alt}
                 className="h-full w-full object-cover"
               />
@@ -120,8 +127,8 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
         </AnimatePresence>
 
         {/* Dark overlays for legibility, above media */}
-        <div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(100deg, oklch(0.24 0.04 212 / 0.92), oklch(0.24 0.04 212 / 0.62) 55%, oklch(0.24 0.04 212 / 0.30))' }} />
-        <div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(0deg, oklch(0.24 0.04 212 / 0.65), transparent 45%)' }} />
+        <div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(100deg, rgb(11 28 48 / 0.92), rgb(11 28 48 / 0.60) 55%, rgb(11 28 48 / 0.28))' }} />
+        <div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(0deg, rgb(11 28 48 / 0.66), transparent 45%)' }} />
 
         {count > 1 && (
           // One control cluster, bottom-left under the copy — clear of the hero
@@ -181,8 +188,8 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
             >
               <p className="inline-flex items-center gap-2 rounded-pill bg-cream/12 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-cream ring-1 ring-cream/25 backdrop-blur-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-200 opacity-70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-200" />
                 </span>
                 {c.eyebrow}
               </p>
@@ -190,7 +197,7 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
               <h1 className="mt-5 text-cream text-[clamp(2.4rem,6.4vw,4.4rem)]">
                 {c.title}
                 <br />
-                <span className="text-accent">{c.titleAccent}</span>
+                <span className="text-brand-200">{c.titleAccent}</span>
               </h1>
 
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/85">{c.subtitle}</p>

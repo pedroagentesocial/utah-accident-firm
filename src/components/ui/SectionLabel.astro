@@ -9,7 +9,7 @@ interface Props {
   class?: string;
 }
 const { tone = 'brand', class: className = '' } = Astro.props;
-const color = { brand: 'text-brand', accent: 'text-accent-deep', band: 'text-accent' }[tone];
+const color = { brand: 'text-brand', accent: 'text-accent-deep', band: 'text-brand-200' }[tone];
 ---
 <p class={`flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] ${color} ${className}`}>
   <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

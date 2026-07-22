@@ -61,6 +61,9 @@ export const images = {
   },
 } as const;
 
-/** Default Open Graph / Twitter share image (1200x630). PROVISIONAL stock. */
-export const OG_IMAGE =
-  'https://images.unsplash.com/photo-1685893417834-1fb3b2a7121f?auto=format&fit=crop&w=1200&h=630&q=70';
+/**
+ * Default Open Graph / Twitter share image. Local (no external hotlink), so it
+ * never rate-limits or breaks. Official UAF brand banner (1600x666, ~2.4:1);
+ * platforms crop it to ~1.91:1 around the centered logo lockup.
+ */
+export const OG_IMAGE = '/BannerFB.jpeg';

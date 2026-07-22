@@ -13,7 +13,7 @@ const img = images.utahRoad;
 <section id="situations" class="relative overflow-hidden">
   <img src={img.src} alt={img.alt[lang]} width="1800" height="900" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
   {/* [STOCK PROVISIONAL — reemplazar con foto real de Utah] */}
-  <div class="absolute inset-0" style="background: linear-gradient(180deg, oklch(0.30 0.05 205 / 0.92), oklch(0.30 0.05 205 / 0.82));" aria-hidden="true"></div>
+  <div class="absolute inset-0" style="background: linear-gradient(180deg, rgb(21 62 106 / 0.93), rgb(14 44 77 / 0.85));" aria-hidden="true"></div>
 
   <div class="relative section-y mx-auto max-w-5xl px-4 sm:px-6">
     <Reveal>
@@ -27,7 +27,7 @@ const img = images.utahRoad;
     <Reveal delay={100} class="mt-8 flex flex-wrap gap-2.5 sm:gap-3">
       {c.items.map((item) => (
         <span class="inline-flex items-center gap-2 rounded-pill border border-cream/25 bg-cream/10 px-4 py-2 text-sm font-medium text-cream backdrop-blur-sm">
-          <svg class="h-4 w-4 shrink-0 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="h-4 w-4 shrink-0 text-brand-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 6 9 17l-5-5" />
           </svg>
           {item}

@@ -26,7 +26,7 @@ const wrap =
 const callCls =
   tone === 'onband'
     ? 'bg-cream text-ink hover:bg-paper'
-    : 'bg-accent text-ink hover:bg-accent-deep';
+    : 'bg-accent text-cream hover:bg-accent-deep';
 const waCls = 'text-cream hover:opacity-90';
 const formCls =
   tone === 'onband'
@@ -48,7 +48,7 @@ const formCls =
     href={wa}
     target="_blank"
     rel="noopener noreferrer"
-    style="background-color: oklch(0.49 0.13 152)"
+    style="background-color: var(--color-wa)"
     class={`inline-flex items-center justify-center gap-2 rounded-pill px-5 py-3 text-sm font-semibold transition active:scale-[0.98] shadow-soft ${waCls}`}
   >
     <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

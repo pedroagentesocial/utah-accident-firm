@@ -1,10 +1,10 @@
 ---
 /**
- * CTA button / link. Variants tuned to the "Calma cálida" palette.
- *   amber   - primary action (warm, owns conversions)
- *   brand   - teal solid (secondary emphasis)
+ * CTA button / link. Variants tuned to the UAF brand palette.
+ *   amber   - primary action: solid brand blue, white text (name kept for callers)
+ *   brand   - brand blue solid (secondary emphasis)
  *   outline - low emphasis on light surfaces
- *   onband  - for use on the teal band (cream fill)
+ *   onband  - for use on the blue band (white fill, blue text)
  */
 interface Props {
   href: string;
@@ -30,10 +30,10 @@ const sizes = {
   lg: 'px-6 py-3.5 text-base',
 };
 const variants = {
-  amber: 'bg-accent text-ink shadow-soft hover:bg-accent-deep',
+  amber: 'bg-accent text-cream shadow-soft hover:bg-accent-deep',
   brand: 'bg-brand text-cream shadow-soft hover:bg-brand-deep',
   outline: 'border border-line text-fg hover:border-brand hover:text-brand',
-  onband: 'bg-cream text-ink shadow-soft hover:bg-paper',
+  onband: 'bg-cream text-brand shadow-soft hover:bg-paper',
 };
 ---
 <a

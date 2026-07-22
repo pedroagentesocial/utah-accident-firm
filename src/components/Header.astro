@@ -37,14 +37,14 @@ const links = [
   data-overlay={isHome ? 'true' : undefined}
   class="fixed inset-x-0 top-0 z-50 border-b border-line bg-paper/90 backdrop-blur"
 >
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:px-6">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:px-6">
     <a href={home} class="hdr-link inline-flex shrink-0" aria-label={business.name}>
       <Wordmark />
     </a>
 
-    <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+    <nav class="hidden items-center gap-5 xl:flex" aria-label="Primary">
       {links.map((l) => (
-        <a href={l.href} class="hdr-link text-sm font-medium text-fg transition-colors hover:text-brand">{l.label}</a>
+        <a href={l.href} class="hdr-link whitespace-nowrap py-2 text-sm font-medium text-fg transition-colors hover:text-brand">{l.label}</a>
       ))}
     </nav>
 
@@ -52,13 +52,13 @@ const links = [
       <LanguageSwitcher class="hdr-link hdr-outline" />
 
       <!-- Mobile: compact Call icon (WhatsApp lives in the menu + floating button) -->
-      <a href={telHref} aria-label={t.channels.call} class="grid h-10 w-10 place-items-center rounded-pill bg-accent text-ink shadow-soft transition-colors hover:bg-accent-deep sm:hidden">
+      <a href={telHref} aria-label={t.channels.call} class="hdr-cta grid h-10 w-10 place-items-center rounded-pill bg-accent text-cream shadow-soft transition-colors hover:bg-accent-deep sm:hidden">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
         </svg>
       </a>
       <!-- Tablet/desktop: WhatsApp icon -->
-      <a href={wa} target="_blank" rel="noopener noreferrer" aria-label={t.channels.whatsapp} class="hidden h-10 w-10 place-items-center rounded-pill text-cream shadow-soft sm:grid" style="background-color: oklch(0.49 0.13 152)">
+      <a href={wa} target="_blank" rel="noopener noreferrer" aria-label={t.channels.whatsapp} class="hidden h-10 w-10 place-items-center rounded-pill text-cream shadow-soft sm:grid" style="background-color: var(--color-wa)">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M17.47 14.38c-.3-.15-1.74-.86-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.94-.93 1.13-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.51.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.91-2.19-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.52.07-.79.37-.27.29-1.04 1.01-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.74-.71 1.99-1.4.24-.69.24-1.28.17-1.4-.07-.13-.27-.2-.56-.35Z" />
           <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Z" />
@@ -66,18 +66,18 @@ const links = [
       </a>
 
       <!-- Desktop: Call + Form CTA -->
-      <a href={telHref} class="hidden items-center gap-2 rounded-pill bg-accent px-4 py-2 text-sm font-semibold text-ink shadow-soft transition-colors hover:bg-accent-deep sm:inline-flex">
+      <a href={telHref} class="hdr-cta hidden items-center gap-2 whitespace-nowrap rounded-pill bg-accent px-4 py-2 text-sm font-semibold text-cream shadow-soft transition-colors hover:bg-accent-deep sm:inline-flex">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
         </svg>
         {business.phoneDisplay}
       </a>
-      <a href={`${home}#contact`} class="hidden rounded-pill bg-brand px-4 py-2 text-sm font-semibold text-cream shadow-soft transition-colors hover:bg-brand-deep lg:inline-flex">
+      <a href={`${home}#contact`} class="hdr-cta hidden whitespace-nowrap rounded-pill bg-brand px-4 py-2 text-sm font-semibold text-cream shadow-soft transition-colors hover:bg-brand-deep xl:inline-flex">
         {t.nav.getStarted}
       </a>
 
       <!-- Mobile nav menu -->
-      <details class="relative lg:hidden [&:not([open])>div]:hidden">
+      <details class="relative xl:hidden [&:not([open])>div]:hidden">
         <summary class="hdr-link hdr-outline grid h-10 w-10 cursor-pointer list-none place-items-center rounded-pill border border-line text-fg [&::-webkit-details-marker]:hidden" aria-label={t.nav.menu}>
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" />
