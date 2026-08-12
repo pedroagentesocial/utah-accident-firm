@@ -195,7 +195,7 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
                 {c.eyebrow}
               </p>
 
-              <h1 className="mt-5 text-cream text-[clamp(2.1rem,5.2vw,3.6rem)]">
+              <h1 className="mt-5 text-cream text-[clamp(2.4rem,6.4vw,4.4rem)]">
                 {headlineLines(c.title).map((l, n) => (
                   <span key={n} className="block">{l}</span>
                 ))}
