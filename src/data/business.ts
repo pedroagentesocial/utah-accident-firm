@@ -66,11 +66,29 @@ export const business = {
     { days: ['Sat'], opens: '09:00', closes: '14:00' },
   ],
 
+  /**
+   * The FIVE networks the brand always shows, in display order, even before
+   * every account exists. An empty `url` renders as a muted "coming soon" mark
+   * instead of a link, so we never publish a 404 or point at a handle someone
+   * else could squat. Fill the url in and it becomes a real link AND joins the
+   * LocalBusiness `sameAs` automatically.
+   *
+   * Set `showPending: false` to hide the not-yet-created ones.
+   */
   social: {
-    // TODO: add real profiles when available.
-    facebook: '',
-    instagram: '',
+    showPending: true,
+    profiles: [
+      { key: 'facebook', label: 'Facebook', url: '' },
+      { key: 'instagram', label: 'Instagram', url: '' },
+      { key: 'tiktok', label: 'TikTok', url: '' },
+      { key: 'youtube', label: 'YouTube', url: '' },
+      { key: 'linkedin', label: 'LinkedIn', url: '' },
+    ],
   },
 } as const;
 
+/** Live profile URLs only — what schema.org `sameAs` is allowed to claim. */
+export const socialSameAs: string[] = business.social.profiles.filter((p) => p.url).map((p) => p.url);
+
 export type Business = typeof business;
+export type SocialKey = (typeof business.social.profiles)[number]['key'];

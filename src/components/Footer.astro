@@ -2,6 +2,7 @@
 /** Site footer — NAP, hours, service area, nav, and the mandatory disclaimer. */
 import Wordmark from './Wordmark.astro';
 import LegalDisclaimer from './LegalDisclaimer.astro';
+import SocialLinks from './ui/SocialLinks.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import { business } from '../data/business';
 import { privacyHref } from '../lib/contact';
@@ -60,20 +61,7 @@ const links = [
       <p class="text-sm font-semibold text-ink">{t.footer.serving}</p>
       <p class="mt-3 text-sm leading-relaxed text-muted">{business.areaServed.cities.join(' · ')}</p>
 
-      {(business.social.facebook || business.social.instagram) && (
-        <div class="mt-5 flex gap-3">
-          {business.social.facebook && (
-            <a href={business.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="grid h-9 w-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-brand hover:text-brand">
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h2.5l.5-3H14V9.5c0-.3.2-.5.5-.5Z" /></svg>
-            </a>
-          )}
-          {business.social.instagram && (
-            <a href={business.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="grid h-9 w-9 place-items-center rounded-full border border-line text-muted transition-colors hover:border-brand hover:text-brand">
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
-            </a>
-          )}
-        </div>
-      )}
+      <SocialLinks class="mt-6" heading={t.footer.follow} pendingLabel={t.footer.comingSoon} />
     </div>
   </div>
 

@@ -105,6 +105,9 @@ export const ui = {
       rights: 'All rights reserved.',
       closed: 'Closed',
       privacy: 'Privacy Policy',
+      follow: 'Follow us',
+      // Shown on the social marks whose account does not exist yet.
+      comingSoon: 'Coming soon',
     },
     weekdays: { Mon: 'Mon', Tue: 'Tue', Wed: 'Wed', Thu: 'Thu', Fri: 'Fri', Sat: 'Sat', Sun: 'Sun' } as Record<string, string>,
     seo: {
@@ -209,6 +212,8 @@ export const ui = {
       rights: 'Todos los derechos reservados.',
       closed: 'Cerrado',
       privacy: 'Política de Privacidad',
+      follow: 'Síguenos',
+      comingSoon: 'Próximamente',
     },
     weekdays: { Mon: 'Lun', Tue: 'Mar', Wed: 'Mié', Thu: 'Jue', Fri: 'Vie', Sat: 'Sáb', Sun: 'Dom' } as Record<string, string>,
     seo: {

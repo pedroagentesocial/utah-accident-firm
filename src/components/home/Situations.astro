@@ -24,9 +24,11 @@ const img = images.utahRoad;
       </div>
     </Reveal>
 
+    {/* `flex-auto` lets each row grow to the full width, so the leftovers on the
+        last row stretch instead of leaving a lone chip hanging on the left. */}
     <Reveal delay={100} class="mt-8 flex flex-wrap gap-2.5 sm:gap-3">
       {c.items.map((item) => (
-        <span class="inline-flex items-center gap-2 rounded-pill border border-cream/25 bg-cream/10 px-4 py-2 text-sm font-medium text-cream backdrop-blur-sm">
+        <span class="flex flex-auto items-center justify-center gap-2 rounded-pill border border-cream/25 bg-cream/10 px-4 py-2 text-center text-sm font-medium text-cream backdrop-blur-sm">
           <svg class="h-4 w-4 shrink-0 text-brand-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 6 9 17l-5-5" />
           </svg>

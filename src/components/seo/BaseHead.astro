@@ -5,7 +5,7 @@
  */
 import { PUBLIC_GA4_ID } from 'astro:env/client';
 import { SITE_URL, OG_LOCALE, HREFLANG } from '../../config/site';
-import { business } from '../../data/business';
+import { business, socialSameAs } from '../../data/business';
 import { OG_IMAGE } from '../../data/images';
 import { getLangFromUrl, getAlternatePath } from '../../i18n/utils';
 
@@ -64,6 +64,8 @@ const jsonLd = {
     opens: h.opens,
     closes: h.closes,
   })),
+  // Only profiles that actually exist — never claim a handle we do not own.
+  ...(socialSameAs.length ? { sameAs: socialSameAs } : {}),
 };
 ---
 <meta charset="utf-8" />
