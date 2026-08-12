@@ -16,7 +16,7 @@ export const home = {
       slides: [
         {
           eyebrow: 'Utah · Free, no obligation',
-          title: 'Had a car accident?',
+          title: 'Car accident?',
           titleAccent: 'We take it|from here.',
           subtitle:
             'Take a breath. We file your insurance claim, push for a fair payout, and get your car repaired, so you can focus on getting back to normal.',
@@ -172,15 +172,15 @@ export const home = {
       slides: [
         {
           eyebrow: 'Utah · Gratis y sin compromiso',
-          title: '¿Tuviste un choque?',
+          title: '¿Tuviste|un choque?',
           titleAccent: 'Nosotros|nos encargamos.',
           subtitle:
             'Respira. Tramitamos tu reclamo de seguro, abogamos por un pago justo y reparamos tu auto, para que te enfoques en volver a la normalidad.',
         },
         {
           eyebrow: 'Español e inglés · Respuesta el mismo día',
-          title: '¿La oferta es baja?',
-          titleAccent: 'Nosotros buscamos|un pago justo.',
+          title: '¿La oferta|es baja?',
+          titleAccent: 'Buscamos|un pago justo.',
           subtitle:
             'Las aseguradoras ofrecen poco y se mueven rápido. Manejamos el reclamo, las llamadas y el papeleo, y luchamos por lo que tu accidente realmente vale.',
         },

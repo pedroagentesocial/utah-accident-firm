@@ -177,7 +177,7 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
         onFocusCapture={pause}
         onBlurCapture={resume}
       >
-        <div className="max-w-3xl">
+        <div className="max-w-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={i}
