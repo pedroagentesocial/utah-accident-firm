@@ -1,0 +1,50 @@
+---
+/**
+ * Blog post body, shared by /en/blog/[slug]/ and /es/blog/[slug]/. The rendered
+ * Markdown arrives as a slot so each page keeps its own typed collection.
+ */
+import type { Lang } from '../../i18n/ui';
+import { blog } from '../../i18n/blog';
+import { formatDate, blogPath } from '../../lib/blog';
+import Headline from '../ui/Headline.astro';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  date: Date;
+  updated?: Date;
+}
+const { lang, title, description, date, updated } = Astro.props;
+const c = blog[lang];
+---
+
+<article class="section-y">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6">
+    <a href={blogPath(lang)} class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline">
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5m6 6-6-6 6-6" />
+      </svg>
+      {c.allPosts}
+    </a>
+
+    <Headline class="mt-5 text-[clamp(1.8rem,4.2vw,2.6rem)]" as="h1" text={title} />
+
+    <p class="mt-3 text-sm text-muted">
+      {c.published}: <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time>
+      {
+        updated && (
+          <>
+            {' · '}
+            {c.updated}: <time datetime={updated.toISOString().slice(0, 10)}>{formatDate(updated, lang)}</time>
+          </>
+        )
+      }
+    </p>
+    <p class="mt-5 text-lg leading-relaxed text-muted">{description}</p>
+
+    <div class="article mt-8">
+      <slot />
+    </div>
+  </div>
+</article>

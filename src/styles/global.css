@@ -95,6 +95,48 @@
 /* Fluid section rhythm helper */
 .section-y { padding-block: clamp(3.5rem, 8vw, 7rem); }
 
+/* --- Blog article body ---------------------------------------------------
+   Styles raw Markdown output with the same tokens as the rest of the site
+   (no typography plugin, no extra dependency). */
+.article {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-fg);
+}
+.article > * + * { margin-top: 1.25rem; }
+.article h2 {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+.article h3 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: var(--color-ink);
+}
+.article ul,
+.article ol { padding-left: 1.25rem; }
+.article ul { list-style: disc; }
+.article ol { list-style: decimal; }
+.article li + li { margin-top: 0.5rem; }
+.article li::marker { color: var(--color-brand); }
+.article strong { color: var(--color-ink); font-weight: 600; }
+.article a {
+  color: var(--color-brand);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article a:hover { color: var(--color-brand-deep); }
+.article blockquote {
+  border-left: 3px solid var(--color-brand-200);
+  background: var(--color-paper-2);
+  padding: 0.75rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.article hr { border-color: var(--color-line); }
+
 /* --- Scroll reveal (robust: visible by default, JS-gated) -----------------
    Content is ALWAYS visible without JS. Only when JS is confirmed (html.js)
    do we hide-then-reveal, so a hydration failure never blanks a section. */

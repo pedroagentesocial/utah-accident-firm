@@ -13,8 +13,10 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  /** Keep a page out of the index (e.g. the blog while every post is a draft). */
+  noindex?: boolean;
 }
-const { title, description, image } = Astro.props;
+const { title, description, image, noindex } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -23,7 +25,7 @@ const t = useTranslations(lang);
   <head>
     {/* Flag JS before paint so reveals hide-then-animate; no JS = content stays visible. */}
     <script is:inline>document.documentElement.classList.add('js');</script>
-    <BaseHead title={title} description={description} image={image} />
+    <BaseHead title={title} description={description} image={image} noindex={noindex} />
     <ClientRouter />
   </head>
   <body class="min-h-screen bg-paper text-fg">

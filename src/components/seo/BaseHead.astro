@@ -14,8 +14,10 @@ interface Props {
   description: string;
   /** OG image: absolute URL or site-root path. Defaults to the brand share image. */
   image?: string;
+  /** Emit `noindex` (used by the blog index while it has no published posts). */
+  noindex?: boolean;
 }
-const { title, description, image = OG_IMAGE } = Astro.props;
+const { title, description, image = OG_IMAGE, noindex = false } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
@@ -77,6 +79,7 @@ const jsonLd = {
 
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, follow" />}
 <link rel="canonical" href={canonical} />
 
 {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}

@@ -6,6 +6,8 @@ import SocialLinks from './ui/SocialLinks.astro';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import { business } from '../data/business';
 import { privacyHref } from '../lib/contact';
+import { blogPath, getPosts } from '../lib/blog';
+import { blog } from '../i18n/blog';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,13 +16,17 @@ const home = localize();
 const a = business.address;
 const year = new Date().getFullYear();
 
-// Home-anchored links (work from any page, including legal pages).
+// Home-anchored links (work from any page, including legal pages). The blog
+// lives here and ONLY here — the home page keeps a single conversion path — and
+// stays out of production entirely while every post is still a draft.
+const hasPosts = (await getPosts(lang)).length > 0;
 const links = [
   { href: `${home}#how`, label: t.nav.how },
   { href: `${home}#services`, label: t.nav.services },
   { href: `${home}#situations`, label: t.nav.situations },
   { href: `${home}#faq`, label: t.nav.faq },
   { href: `${home}#contact`, label: t.nav.contact },
+  ...(hasPosts ? [{ href: blogPath(lang), label: blog[lang].title }] : []),
 ];
 ---
 <footer class="border-t border-line bg-paper-2">

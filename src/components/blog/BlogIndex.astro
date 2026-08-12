@@ -1,0 +1,55 @@
+---
+/** Blog index body, shared by /en/blog/ and /es/blog/. */
+import type { Lang } from '../../i18n/ui';
+import { blog } from '../../i18n/blog';
+import { getPosts, formatDate, blogPostPath } from '../../lib/blog';
+import Reveal from '../ui/Reveal.astro';
+import SectionLabel from '../ui/SectionLabel.astro';
+import Headline from '../ui/Headline.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = blog[lang];
+const posts = await getPosts(lang);
+---
+
+<section class="section-y">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <Reveal>
+      <SectionLabel>{c.title}</SectionLabel>
+      <Headline class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]" as="h1" text={c.heading} />
+      <p class="mt-4 text-lg leading-relaxed text-muted">{c.intro}</p>
+    </Reveal>
+
+    {posts.length === 0 && <p class="mt-10 text-muted">{c.empty}</p>}
+
+    <ul role="list" class="mt-10 space-y-4">
+      {
+        posts.map((post, i) => (
+          <Reveal as="li" delay={i * 80}>
+            <article class="group rounded-card border border-line bg-paper p-6 shadow-soft transition-shadow duration-300 hover:shadow-lift">
+              <p class="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date, lang)}</time>
+                {post.data.draft && <span class="ml-2 rounded-pill bg-paper-2 px-2 py-0.5 text-fg">draft</span>}
+              </p>
+              <h2 class="mt-2 font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                <a href={blogPostPath(lang, post.id)} class="transition-colors group-hover:text-brand">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="mt-2 leading-relaxed text-muted">{post.data.description}</p>
+              <span class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
+                {c.readMore}
+                <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14m-6-6 6 6-6 6" />
+                </svg>
+              </span>
+            </article>
+          </Reveal>
+        ))
+      }
+    </ul>
+  </div>
+</section>
