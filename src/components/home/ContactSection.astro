@@ -10,6 +10,7 @@ import ContactChannels from '../ui/ContactChannels.astro';
 import LegalDisclaimer from '../LegalDisclaimer.astro';
 import Reveal from '../ui/Reveal.astro';
 import SectionLabel from '../ui/SectionLabel.astro';
+import Headline from '../ui/Headline.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -23,7 +24,7 @@ const img = images.contactForm;
       <Reveal>
         <div>
           <SectionLabel tone="brand">{c.kicker}</SectionLabel>
-          <h2 class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]">{c.title}</h2>
+          <Headline class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]" text={c.title} />
           <p class="mt-4 max-w-lg text-lg leading-relaxed text-muted">{c.intro}</p>
         </div>
       </Reveal>

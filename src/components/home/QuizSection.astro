@@ -8,6 +8,7 @@
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import { privacyHref, telHref, whatsappHref } from '../../lib/contact';
 import SectionLabel from '../ui/SectionLabel.astro';
+import Headline from '../ui/Headline.astro';
 import Reveal from '../ui/Reveal.astro';
 import QuizLauncher from '../islands/QuizLauncher';
 
@@ -20,7 +21,7 @@ const q = t.quiz;
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <Reveal class="mx-auto max-w-2xl text-center">
       <SectionLabel tone="brand">{q.kicker}</SectionLabel>
-      <h2 class="mt-3 text-[clamp(1.7rem,3.4vw,2.4rem)]">{q.title}</h2>
+      <Headline class="mt-3 text-[clamp(1.7rem,3.4vw,2.4rem)]" text={q.title} />
       <p class="mt-3 leading-relaxed text-muted">{q.intro}</p>
     </Reveal>
 

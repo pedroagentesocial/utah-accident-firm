@@ -23,7 +23,7 @@ export const home = {
         },
         {
           eyebrow: 'English & Spanish · Same-day reply',
-          title: 'Insurance offer feels low?',
+          title: 'Insurance offer|feels low?',
           titleAccent: 'We push for what’s fair.',
           subtitle:
             'Insurers start low and move fast. We handle the claim, the calls, and the paperwork, and push for what your accident is really worth.',
@@ -33,7 +33,7 @@ export const home = {
     },
     services: {
       kicker: 'What we do for you',
-      title: 'Three things off your plate, starting today',
+      title: 'Three things off your plate,|starting today',
       intro:
         'After a crash there is a pile of calls, forms, and decisions. We handle all of it.',
       items: [
@@ -56,7 +56,7 @@ export const home = {
     },
     how: {
       kicker: 'How it works',
-      title: 'Four calm steps, and we do most of them',
+      title: 'Four calm steps,|and we do most of them',
       intro: 'You stay in the loop. We do the heavy lifting.',
       steps: [
         { title: 'You reach out', desc: 'Call, WhatsApp, or send the form. One message is enough to start.' },
@@ -68,7 +68,7 @@ export const home = {
     },
     why: {
       kicker: 'Why not just do it yourself',
-      title: 'Going it alone costs more than it looks',
+      title: 'Going it alone|costs more than it looks',
       intro: 'The insurance process is built to wear you down. Here is the difference.',
       aloneTitle: 'On your own',
       alone: [
@@ -87,7 +87,7 @@ export const home = {
     },
     situations: {
       kicker: 'Situations we handle',
-      title: 'If it happened on a Utah road, we can help',
+      title: 'If it happened on a Utah road,|we can help',
       intro: 'Not sure if your case fits? Reach out and ask. It is free.',
       items: [
         'Rear-end collisions',
@@ -102,7 +102,7 @@ export const home = {
     },
     trust: {
       kicker: 'Why drivers trust us',
-      title: 'Calm, bilingual help when you need it most',
+      title: 'Calm, bilingual help|when you need it most',
       intro:
         'No pressure, no jargon. Just steady people who deal with insurance companies every day.',
       statsNote: 'Figures shown once verified.',
@@ -119,7 +119,7 @@ export const home = {
     },
     faq: {
       kicker: 'Questions',
-      title: 'Straight answers, before you decide',
+      title: 'Straight answers,|before you decide',
       more: 'Still have a question?',
       moreBody: 'Ask us directly. A real person answers, in English or Spanish, and the first conversation is free.',
       cta: 'Start my claim',
@@ -172,15 +172,15 @@ export const home = {
       slides: [
         {
           eyebrow: 'Utah · Gratis y sin compromiso',
-          title: '¿Tuviste un accidente de auto?',
+          title: '¿Tuviste|un accidente de auto?',
           titleAccent: 'Nosotros nos encargamos.',
           subtitle:
             'Respira. Tramitamos tu reclamo de seguro, abogamos por un pago justo y reparamos tu auto, para que te enfoques en volver a la normalidad.',
         },
         {
           eyebrow: 'Español e inglés · Respuesta el mismo día',
-          title: 'La oferta del seguro tiende a ser baja',
-          titleAccent: 'Nosotros te buscamos un pago justo.',
+          title: 'La oferta del seguro|tiende a ser baja',
+          titleAccent: 'Nosotros te buscamos|un pago justo.',
           subtitle:
             'Las aseguradoras ofrecen poco y se mueven rápido. Manejamos el reclamo, las llamadas y el papeleo, y luchamos por lo que tu accidente realmente vale.',
         },
@@ -189,7 +189,7 @@ export const home = {
     },
     services: {
       kicker: 'Qué hacemos por ti',
-      title: 'Tres cosas menos de qué preocuparse, desde hoy',
+      title: 'Tres cosas menos de qué preocuparse,|desde hoy',
       intro:
         'Después de un choque hay un montón de llamadas, formularios y decisiones. Nosotros nos encargamos de todo.',
       items: [
@@ -212,7 +212,7 @@ export const home = {
     },
     how: {
       kicker: 'Cómo funciona',
-      title: 'Cuatro pasos sencillos, y casi todos los hacemos nosotros',
+      title: 'Cuatro pasos sencillos,|y casi todos los hacemos nosotros',
       intro: 'Tú te mantienes informado. Nosotros hacemos el trabajo pesado.',
       steps: [
         { title: 'Tú nos contactas', desc: 'Llama, escribe por WhatsApp o envía el formulario. Con un solo mensaje empezamos.' },
@@ -224,7 +224,7 @@ export const home = {
     },
     why: {
       kicker: '¿Por qué no hacerlo por ti mismo?',
-      title: 'Hacerlo solo sale más caro de lo que crees',
+      title: 'Hacerlo solo sale|más caro de lo que crees',
       intro: 'El proceso del seguro está diseñado para agotarte. Esta es la diferencia.',
       aloneTitle: 'Por ti mismo',
       alone: [
@@ -243,7 +243,7 @@ export const home = {
     },
     situations: {
       kicker: 'Situaciones que atendemos',
-      title: 'Si pasó en una carretera de Utah, podemos ayudar',
+      title: 'Si pasó en una carretera de Utah,|podemos ayudar',
       intro: '¿No sabes si tu caso aplica? Pregúntanos. Es gratis.',
       items: [
         'Choques por alcance',
@@ -258,7 +258,7 @@ export const home = {
     },
     trust: {
       kicker: 'Por qué confían en nosotros',
-      title: 'Te ayudamos con calma, en español e inglés, cuando más lo necesitas',
+      title: 'Te ayudamos con calma,|en español e inglés,|cuando más lo necesitas',
       intro:
         'Sin presión ni términos complicados. Gente con experiencia que trata con aseguradoras todos los días.',
       statsNote: 'Las cifras se muestran una vez verificadas.',
@@ -275,7 +275,7 @@ export const home = {
     },
     faq: {
       kicker: 'Preguntas',
-      title: 'Respuestas claras, antes de decidir',
+      title: 'Respuestas claras,|antes de decidir',
       more: '¿Aún tienes dudas?',
       moreBody: 'Pregúntanos directamente. Te responde una persona real, en inglés o español, y la primera conversación es gratis.',
       cta: 'Iniciar mi reclamo',

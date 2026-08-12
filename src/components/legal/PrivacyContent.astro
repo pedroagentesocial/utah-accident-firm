@@ -3,6 +3,7 @@
 import type { Lang } from '../../i18n/ui';
 import { privacy } from '../../i18n/legal';
 import LegalDisclaimer from '../LegalDisclaimer.astro';
+import { nb } from '../../lib/typography';
 
 interface Props {
   lang: Lang;
@@ -12,7 +13,7 @@ const c = privacy[lang];
 ---
 <section class="section-y">
   <div class="mx-auto max-w-2xl px-4 sm:px-6">
-    <h1 class="text-[clamp(2rem,5vw,3rem)]">{c.title}</h1>
+    <h1 class="text-[clamp(2rem,5vw,3rem)]">{nb(c.title)}</h1>
     <p class="mt-2 text-sm text-muted">{c.updated}</p>
     <p class="mt-6 text-lg leading-relaxed text-muted">{c.intro}</p>
 

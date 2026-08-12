@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { headlineLines } from '../../lib/typography';
 
 type Lang = 'en' | 'es';
 
@@ -176,7 +177,7 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
         onFocusCapture={pause}
         onBlurCapture={resume}
       >
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={i}
@@ -194,10 +195,13 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
                 {c.eyebrow}
               </p>
 
-              <h1 className="mt-5 text-cream text-[clamp(2.4rem,6.4vw,4.4rem)]">
-                {c.title}
-                <br />
-                <span className="text-brand-200">{c.titleAccent}</span>
+              <h1 className="mt-5 text-cream text-[clamp(2.1rem,5.2vw,3.6rem)]">
+                {headlineLines(c.title).map((l, n) => (
+                  <span key={n} className="block">{l}</span>
+                ))}
+                {headlineLines(c.titleAccent).map((l, n) => (
+                  <span key={n} className="block text-brand-200">{l}</span>
+                ))}
               </h1>
 
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/85">{c.subtitle}</p>

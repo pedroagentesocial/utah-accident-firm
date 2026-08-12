@@ -5,6 +5,7 @@ import { home } from '../../i18n/home';
 import { images } from '../../data/images';
 import Reveal from '../ui/Reveal.astro';
 import SectionLabel from '../ui/SectionLabel.astro';
+import Headline from '../ui/Headline.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const c = home[lang].situations;
@@ -17,9 +18,9 @@ const img = images.utahRoad;
 
   <div class="relative section-y mx-auto max-w-5xl px-4 sm:px-6">
     <Reveal>
-      <div class="max-w-2xl">
+      <div class="max-w-4xl">
         <SectionLabel tone="band">{c.kicker}</SectionLabel>
-        <h2 class="mt-3 text-cream text-[clamp(1.9rem,4.5vw,3rem)]">{c.title}</h2>
+        <Headline class="mt-3 text-cream text-[clamp(1.9rem,4.5vw,3rem)]" text={c.title} />
         <p class="mt-4 text-lg leading-relaxed text-cream/85">{c.intro}</p>
       </div>
     </Reveal>

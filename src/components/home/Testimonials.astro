@@ -10,6 +10,7 @@ import { displayTestimonials, testimonialsAreSamples } from '../../data/testimon
 import TestimonialsCarousel from '../islands/TestimonialsCarousel.tsx';
 import Reveal from '../ui/Reveal.astro';
 import SectionLabel from '../ui/SectionLabel.astro';
+import Headline from '../ui/Headline.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const c = home[lang].testimonials;
@@ -27,7 +28,7 @@ const c = home[lang].testimonials;
             </span>
           )}
         </div>
-        <h2 class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]">{c.title}</h2>
+        <Headline class="mt-3 text-[clamp(1.9rem,4.5vw,3rem)]" text={c.title} />
         <p class="mt-4 text-lg leading-relaxed text-muted">{testimonialsAreSamples ? c.sampleNote : c.intro}</p>
       </div>
     </Reveal>

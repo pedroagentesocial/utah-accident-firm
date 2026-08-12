@@ -8,6 +8,7 @@ import { getLangFromUrl } from '../../i18n/utils';
 import { home } from '../../i18n/home';
 import Reveal from '../ui/Reveal.astro';
 import SectionLabel from '../ui/SectionLabel.astro';
+import Headline from '../ui/Headline.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const s = home[lang].services;
@@ -27,7 +28,7 @@ const stepIcons = [
     <div>
       <Reveal>
         <SectionLabel tone="brand">{s.kicker}</SectionLabel>
-        <h2 class="mt-3 text-[clamp(1.7rem,3.2vw,2.3rem)]">{s.title}</h2>
+        <Headline class="mt-3 text-[clamp(1.7rem,3.2vw,2.3rem)]" text={s.title} />
         <p class="mt-3 leading-relaxed text-muted">{s.intro}</p>
       </Reveal>
 
@@ -52,7 +53,7 @@ const stepIcons = [
     <div id="how" class="scroll-mt-24 rounded-card bg-brand-soft/40 p-6 sm:p-8 lg:p-9">
       <Reveal>
         <SectionLabel tone="brand">{h.kicker}</SectionLabel>
-        <h2 class="mt-3 text-[clamp(1.7rem,3.2vw,2.3rem)]">{h.title}</h2>
+        <Headline class="mt-3 text-[clamp(1.7rem,3.2vw,2.3rem)]" text={h.title} />
         <p class="mt-3 leading-relaxed text-muted">{h.intro}</p>
       </Reveal>
 

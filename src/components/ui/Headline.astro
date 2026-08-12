@@ -1,0 +1,31 @@
+---
+/**
+ * A section headline that breaks where the copy says it should.
+ *
+ * Copy marks the break with `|` (see lib/typography). Below `sm` the lines run
+ * together and wrap naturally; from `sm` up the break is honoured, so a phrase
+ * like "una carretera de Utah" never splits across two lines.
+ */
+import { headlineLines } from '../../lib/typography';
+
+interface Props {
+  text: string;
+  as?: 'h1' | 'h2' | 'h3';
+  class?: string;
+}
+const { text, as: Tag = 'h2', class: className = '' } = Astro.props;
+const lines = headlineLines(text);
+---
+
+<Tag class={className}>
+  {
+    lines.map((line, i) => (
+      <>
+        {i > 0 && <br class="hidden sm:inline" />}
+        {/* Keeps the words apart when the <br> is off (small screens). */}
+        {i > 0 && <span class="sm:hidden"> </span>}
+        {line}
+      </>
+    ))
+  }
+</Tag>
