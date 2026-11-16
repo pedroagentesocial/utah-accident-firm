@@ -5,11 +5,19 @@ import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
+import { readdirSync, readFileSync } from 'node:fs';
+
+// Mientras todos los artículos sean borradores, el índice del blog lleva noindex;
+// tampoco debe ir en el sitemap (señales contradictorias para Google).
+const blogDir = new URL('./src/content/blog/', import.meta.url);
+const hasPublishedPosts = ['en', 'es'].some((l) =>
+  readdirSync(new URL(`${l}/`, blogDir)).some((f) => !/^draft:\s*true/m.test(readFileSync(new URL(`${l}/${f}`, blogDir), 'utf8'))),
+);
 
 // https://astro.build/config
 export default defineConfig({
   // Canonical production origin. Used for SEO (canonical/hreflang), sitemap, JSON-LD.
-  site: 'https://utahaccidentfirm.com',
+  site: 'https://www.utahaccidentfirm.com',
   trailingSlash: 'always',
 
   // Native Astro i18n. Both locales are prefixed (/en/, /es/); "/" redirects to /en/.
@@ -29,6 +37,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      filter: (page) => hasPublishedPosts || !/\/blog\/$/.test(page),
       i18n: {
         defaultLocale: 'en',
         locales: { en: 'en-US', es: 'es-US' },

@@ -3,7 +3,7 @@
  * Business contact details (NAP) live in src/data/business.ts.
  */
 
-export const SITE_URL = 'https://utahaccidentfirm.com';
+export const SITE_URL = 'https://www.utahaccidentfirm.com';
 
 export const DEFAULT_LOCALE = 'en' as const;
 export const LOCALES = ['en', 'es'] as const;
