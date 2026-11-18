@@ -26,7 +26,8 @@ const ContactSchema = z.object({
   // quiz answers captured along the way (value strings), for context in the email
   answers: z.record(z.string().max(120)).optional(),
   // explicit consent is REQUIRED to submit
-  consent: z.coerce.boolean().refine((v) => v === true, {
+  // z.coerce.boolean() convertía cualquier texto no vacío (incluso "false") en true.
+  consent: z.preprocess((v) => v === true || v === 'true' || v === 'on', z.boolean()).refine((v) => v === true, {
     message: 'Consent is required',
   }),
   // honeypot — must stay empty
@@ -67,11 +68,17 @@ export const POST: APIRoute = async ({ request }) => {
   // Silently accept honeypot hits (pretend success, send nothing).
   if (data.company) return json({ ok: true });
 
-  // If Resend isn't configured yet (e.g. local dev), don't hard-fail.
+  // Without Resend configured: accept only in local dev. In production that
+  // would answer "sent" while the lead goes nowhere, so it is an error and the
+  // form shows its fallback (email).
   if (!RESEND_API_KEY || !CONTACT_TO_EMAIL || !CONTACT_FROM_EMAIL) {
-    console.warn('[contact] Resend env not configured — logging submission only.');
-    console.info('[contact]', data);
-    return json({ ok: true, delivered: false });
+    if (import.meta.env.DEV) {
+      console.warn('[contact] Resend env not configured — logging submission only.');
+      console.info('[contact]', data);
+      return json({ ok: true, delivered: false });
+    }
+    console.error('[contact] Resend env not configured in production — lead NOT delivered.');
+    return json({ ok: false, error: 'not_configured' }, 503);
   }
 
   const subject =
