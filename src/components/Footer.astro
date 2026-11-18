@@ -48,19 +48,19 @@ const links = [
     <div>
       <p class="text-sm font-semibold text-ink">{t.footer.contact}</p>
       <address class="mt-3 text-sm not-italic leading-relaxed text-muted">
-        {a.street}<br />{a.city}, {a.region} {a.postalCode}
-        <a href={`tel:${business.phone}`} class="mt-2 block font-medium text-brand hover:underline">{business.phoneDisplay}</a>
+        {business.hasLocation && <>{a.street}<br />{a.city}, {a.region} {a.postalCode}</>}
+        {business.hasPhone && <a href={`tel:${business.phone}`} class="mt-2 block font-medium text-brand hover:underline">{business.phoneDisplay}</a>}
         <a href={`mailto:${business.email}`} class="block font-medium text-brand hover:underline">{business.email}</a>
       </address>
 
-      <p class="mt-5 text-sm font-semibold text-ink">{t.footer.hours}</p>
+      {business.hasLocation && (<><p class="mt-5 text-sm font-semibold text-ink">{t.footer.hours}</p>
       <ul role="list" class="mt-2 space-y-1 text-sm text-muted">
         {business.hours.map((h) => (
           <li>
             {t.weekdays[h.days[0]]}{h.days.length > 1 ? `–${t.weekdays[h.days[h.days.length - 1]]}` : ''}: {h.opens}–{h.closes}
           </li>
         ))}
-      </ul>
+      </ul></>)}
     </div>
 
     <div>

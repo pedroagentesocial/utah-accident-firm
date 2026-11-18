@@ -34,7 +34,8 @@ const formCls =
     : 'border border-line text-fg hover:border-brand hover:text-brand';
 ---
 <div class={`${wrap} ${className}`}>
-  <a
+  {business.hasPhone && (
+<a
     href={telHref}
     class={`inline-flex items-center justify-center gap-2 rounded-pill px-5 py-3 text-sm font-semibold transition active:scale-[0.98] shadow-soft ${callCls}`}
   >
@@ -43,8 +44,10 @@ const formCls =
     </svg>
     {t.channels.call} · {business.phoneDisplay}
   </a>
+)}
 
-  <a
+  {business.hasWhatsapp && (
+<a
     href={wa}
     target="_blank"
     rel="noopener noreferrer"
@@ -57,6 +60,7 @@ const formCls =
     </svg>
     {t.channels.whatsapp}
   </a>
+)}
 
   <a
     href="#contact"

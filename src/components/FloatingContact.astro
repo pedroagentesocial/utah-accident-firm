@@ -6,6 +6,7 @@
  */
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { telHref, whatsappHref } from '../lib/contact';
+import { business } from '../data/business';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -15,7 +16,8 @@ const wa = whatsappHref(lang);
   class="fixed bottom-4 right-4 z-40 flex items-center gap-2.5"
   style="padding-bottom: env(safe-area-inset-bottom)"
 >
-  <a
+  {business.hasPhone && (
+<a
     href={telHref}
     aria-label={t.channels.call}
     class="group inline-flex h-12 items-center gap-2 rounded-pill bg-accent px-3.5 font-semibold text-cream shadow-lift transition-transform duration-200 hover:scale-105 active:scale-95 sm:h-14 sm:px-5"
@@ -25,8 +27,10 @@ const wa = whatsappHref(lang);
     </svg>
     <span class="hidden text-sm sm:inline">{t.channels.callShort}</span>
   </a>
+)}
 
-  <a
+  {business.hasWhatsapp && (
+<a
     href={wa}
     target="_blank"
     rel="noopener noreferrer"
@@ -40,4 +44,5 @@ const wa = whatsappHref(lang);
     </svg>
     <span class="hidden text-sm sm:inline">{t.channels.whatsapp}</span>
   </a>
+)}
 </div>

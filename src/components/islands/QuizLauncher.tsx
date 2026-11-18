@@ -31,8 +31,8 @@ export default function QuizLauncher({
   chrome: QuizChrome;
   pickLabel: string;
   privacyHref: string;
-  callHref: string;
-  waHref: string;
+  callHref?: string;
+  waHref?: string;
   callLabel: string;
   waLabel: string;
 }) {

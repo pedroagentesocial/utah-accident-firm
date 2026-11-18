@@ -107,8 +107,8 @@ export default function Quiz({
   source: string;
   chrome: QuizChrome;
   privacyHref: string;
-  callHref: string;
-  waHref: string;
+  callHref?: string;
+  waHref?: string;
   callLabel: string;
   waLabel: string;
   onBack: () => void;
@@ -380,8 +380,8 @@ export default function Quiz({
               <p className="mx-auto mt-3 max-w-sm text-cream/85">{tone === 'qualifies' ? result.qualifyText : result.reviewText}</p>
               <p className="mt-6 text-sm font-medium text-cream/75">{chrome.captured}</p>
               <div className="mt-3 flex flex-col gap-2.5 sm:flex-row sm:justify-center">
-                <a href={callHref} className="inline-flex items-center justify-center rounded-pill bg-cream px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-paper">{callLabel}</a>
-                <a href={waHref} target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'var(--color-wa)' }} className="inline-flex items-center justify-center rounded-pill px-5 py-3 text-sm font-semibold text-cream transition-opacity hover:opacity-90">{waLabel}</a>
+                {callHref && <a href={callHref} className="inline-flex items-center justify-center rounded-pill bg-cream px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-paper">{callLabel}</a>}
+                {waHref && <a href={waHref} target="_blank" rel="noopener noreferrer" style={{ backgroundColor: 'var(--color-wa)' }} className="inline-flex items-center justify-center rounded-pill px-5 py-3 text-sm font-semibold text-cream transition-opacity hover:opacity-90">{waLabel}</a>}
               </div>
               <button type="button" onClick={onBack} className="mt-4 inline-block px-2 py-1.5 text-sm font-semibold text-cream/75 underline underline-offset-2 transition-colors hover:text-cream">
                 {chrome.chooseAnother}

@@ -19,6 +19,16 @@ function formatUsPhone(e164: string): string {
 }
 
 export const business = {
+  /* Qué datos de contacto son reales. Mientras el teléfono, el WhatsApp y la
+     oficina no estén confirmados, el sitio NO los muestra ni los pone en el
+     schema: antes salían (385) 555-0100 y "123 Main St", que son de relleno.
+     El teléfono y el WhatsApp se encienden solos al poner PHONE_NUMBER y
+     WHATSAPP_NUMBER en Vercel; la dirección y el horario, poniendo
+     hasLocation en true con los datos reales abajo. */
+  hasPhone: Boolean(PHONE_NUMBER),
+  hasWhatsapp: Boolean(WHATSAPP_NUMBER),
+  hasLocation: false,
+
   // What the company IS — important for the legal disclaimer & schema.
   name: 'Utah Accident Firm',
   legalName: 'Utah Accident Firm LLC', // TODO: confirm legal entity name
