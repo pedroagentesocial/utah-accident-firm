@@ -11,7 +11,9 @@ export const images = {
   // Hero full-bleed background: a calm Utah mountain road. Local asset (Unsplash,
   // free for commercial use), optimized in /public/img/hero-bg.jpg.
   heroBg: {
-    src: '/img/hero-bg.jpg',
+    src: '/img/hero-bg.webp',
+    // 828 px para móvil (80 KB) y 1600 px para escritorio; el JPG original queda en /public.
+    srcSet: '/img/hero-bg-828.webp 828w, /img/hero-bg.webp 1600w',
     alt: {
       en: 'A scenic mountain road winding through the Utah landscape',
       es: 'Un camino escénico de montaña a través del paisaje de Utah',

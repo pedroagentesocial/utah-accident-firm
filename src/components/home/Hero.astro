@@ -16,8 +16,8 @@ const c = home[lang].hero;
 
 // Each carousel slide pairs a background (video / image) with its own copy.
 const slides = [
-  { type: 'video' as const, src: images.contactVideo.src, poster: images.heroBg.src, alt: images.contactVideo.alt[lang] },
-  { type: 'image' as const, src: images.heroBg.src, alt: images.heroBg.alt[lang] },
+  { type: 'video' as const, src: images.contactVideo.src, poster: images.heroBg.src, posterSrcSet: images.heroBg.srcSet, alt: images.contactVideo.alt[lang] },
+  { type: 'image' as const, src: images.heroBg.src, srcSet: images.heroBg.srcSet, alt: images.heroBg.alt[lang] },
 ];
 const copy = c.slides;
 ---

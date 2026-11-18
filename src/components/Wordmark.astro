@@ -13,21 +13,17 @@ interface Props {
 const { tone = 'ink', class: className = '' } = Astro.props;
 const invert = tone === 'light' ? 'brightness-0 invert' : '';
 ---
-<!-- Mobile: monogram only -->
-<img
-  src="/Logo-mark.png"
-  alt="Utah Accident Firm"
-  width="658"
-  height="330"
-  decoding="async"
-  class={`hdr-logo h-11 w-auto object-contain sm:hidden ${invert} ${className}`}
-/>
-<!-- ≥sm: full horizontal lockup -->
-<img
-  src="/Logo-horizontal.png"
-  alt="Utah Accident Firm"
-  width="2164"
-  height="398"
-  decoding="async"
-  class={`hdr-logo hidden h-11 w-auto object-contain sm:block lg:h-12 ${invert} ${className}`}
-/>
+<!-- Un solo <img> con <picture>: el navegador baja solo el logo que va a mostrar
+     (antes bajaba los dos PNG, 420 KB). WebP a 2x de la altura mostrada; los PNG
+     originales quedan en /public para el schema y las redes. -->
+<picture>
+  <source media="(min-width: 640px)" srcset="/Logo-horizontal.webp" width="522" height="96" />
+  <img
+    src="/Logo-mark.webp"
+    alt="Utah Accident Firm"
+    width="175"
+    height="88"
+    decoding="async"
+    class={`hdr-logo h-11 w-auto object-contain lg:h-12 ${invert} ${className}`}
+  />
+</picture>

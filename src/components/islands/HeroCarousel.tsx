@@ -7,12 +7,14 @@ type Lang = 'en' | 'es';
 interface ImageSlide {
   type: 'image';
   src: string;
+  srcSet?: string;
   alt: string;
 }
 interface VideoSlide {
   type: 'video';
   src: string;
   poster?: string;
+  posterSrcSet?: string;
   alt: string;
 }
 export type Slide = ImageSlide | VideoSlide;
@@ -46,6 +48,10 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
   // "lite" = reduced-motion OR data-saver / slow network → show the poster, never
   // auto-download or autoplay the hero video (many users arrive on cellular).
   const [lite, setLite] = useState(false);
+  // El video (2.9 MB) se monta hasta que la página terminó de cargar, para que no
+  // compita con la imagen de portada ni con el resto de la página. Mientras, se ve
+  // la imagen (responsiva) que antes era el poster.
+  const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const count = slides.length;
 
@@ -55,6 +61,14 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
     const conn = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
     const slow = Boolean(conn?.saveData) || /(^|-)2g$/.test(conn?.effectiveType ?? '');
     setLite(r || slow);
+  }, []);
+
+  useEffect(() => {
+    let t: number | undefined;
+    const arrancar = () => { t = window.setTimeout(() => setVideoReady(true), 1500); };
+    if (document.readyState === 'complete') arrancar();
+    else window.addEventListener('load', arrancar, { once: true });
+    return () => { window.removeEventListener('load', arrancar); if (t) window.clearTimeout(t); };
   }, []);
 
   const paginate = (d: number) => setI((p) => (p + d + count) % count);
@@ -104,6 +118,8 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
             {slide.type === 'image' ? (
               <img
                 src={slide.src}
+                srcSet={slide.srcSet}
+                sizes="100vw"
                 alt={slide.alt}
                 fetchPriority="high"
                 decoding="async"
@@ -111,18 +127,33 @@ export default function HeroCarousel({ slides, copy, prevLabel, nextLabel, lang,
                 className="h-full w-full object-cover"
               />
             ) : (
-              <video
-                ref={videoRef}
-                src={slide.src}
-                poster={slide.poster}
-                autoPlay={!lite}
-                muted
-                loop
-                playsInline
-                preload={lite ? 'none' : 'metadata'}
-                aria-label={slide.alt}
-                className="h-full w-full object-cover"
-              />
+              <>
+                {slide.poster && (
+                  <img
+                    src={slide.poster}
+                    srcSet={slide.posterSrcSet}
+                    sizes="100vw"
+                    alt=""
+                    fetchPriority="high"
+                    decoding="async"
+                    draggable={false}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
+                {videoReady && !lite && (
+                  <video
+                    ref={videoRef}
+                    src={slide.src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-label={slide.alt}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
+              </>
             )}
           </motion.div>
         </AnimatePresence>
