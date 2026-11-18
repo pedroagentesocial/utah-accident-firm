@@ -60,6 +60,7 @@ const base = 'grid h-9 w-9 place-items-center rounded-full border transition-col
               </a>
             ) : (
               <span
+                role="img"
                 aria-label={`${p.label} — ${pendingLabel}`}
                 title={`${p.label} — ${pendingLabel}`}
                 class={`${base} cursor-default border-dashed border-line text-muted/45`}
