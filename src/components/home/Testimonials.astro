@@ -14,7 +14,11 @@ import Headline from '../ui/Headline.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const c = home[lang].testimonials;
+// Con reseñas de muestra la sección solo se ve en desarrollo: en el sitio público
+// unas reseñas de ejemplo con nombre y "Google" se leen como reales aunque lleven aviso.
+const mostrar = !testimonialsAreSamples || import.meta.env.DEV;
 ---
+{mostrar && (
 <section class="section-y bg-brand-soft/40">
   <div class="mx-auto max-w-3xl px-4 sm:px-6">
     <Reveal>
@@ -44,3 +48,4 @@ const c = home[lang].testimonials;
     </div>
   </div>
 </section>
+)}
