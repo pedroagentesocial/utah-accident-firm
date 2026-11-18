@@ -16,7 +16,12 @@ const messages = {
 
 export const GET: APIRoute = ({ url }) => {
   const lang = url.searchParams.get('lang') === 'es' ? 'es' : 'en';
-  const number = (WHATSAPP_NUMBER ?? '13855550100').replace(/\D/g, ''); // TODO: real number
+  // Sin número real configurado no se manda a nadie a un WhatsApp de relleno:
+  // se lleva al formulario de contacto.
+  if (!WHATSAPP_NUMBER) {
+    return new Response(null, { status: 302, headers: { Location: `/${lang}/#contact`, 'Cache-Control': 'no-store' } });
+  }
+  const number = WHATSAPP_NUMBER.replace(/\D/g, '');
   const text = encodeURIComponent(messages[lang]);
   const target = `https://wa.me/${number}?text=${text}`;
 

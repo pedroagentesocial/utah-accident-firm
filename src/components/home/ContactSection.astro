@@ -58,7 +58,7 @@ const img = images.contactForm;
         <ContactChannels layout="stack" class="mt-4" />
 
         <address class="mt-6 border-t border-line pt-5 text-sm not-italic leading-relaxed text-muted">
-          {a.street}<br />{a.city}, {a.region} {a.postalCode}
+          {business.hasLocation && <>{a.street}<br />{a.city}, {a.region} {a.postalCode}</>}
           <a href={`mailto:${business.email}`} class="mt-2 block font-medium text-brand hover:underline">{business.email}</a>
           <span class="mt-1 block">{t.channels.available}</span>
         </address>
