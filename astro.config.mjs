@@ -3,6 +3,7 @@ import { defineConfig, envField } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
+import { loadEnv } from 'vite';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import { readdirSync, readFileSync } from 'node:fs';
@@ -13,6 +14,12 @@ const blogDir = new URL('./src/content/blog/', import.meta.url);
 const hasPublishedPosts = ['en', 'es'].some((l) =>
   readdirSync(new URL(`${l}/`, blogDir)).some((f) => !/^draft:\s*true/m.test(readFileSync(new URL(`${l}/${f}`, blogDir), 'utf8'))),
 );
+
+// Partytown solo se incluye si hay GA4. Si no, la integración igual inyecta su
+// cargador y un service worker en todas las páginas para nada (Lighthouse lo
+// marca como API obsoleta: FencedFrame). PUBLIC_GA4_ID se fija al construir,
+// igual que astro:env/client, así que al ponerlo en Vercel basta un redeploy.
+const { PUBLIC_GA4_ID } = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), 'PUBLIC_');
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,8 +50,8 @@ export default defineConfig({
         locales: { en: 'en-US', es: 'es-US' },
       },
     }),
-    // GA4 runs off the main thread via Partytown.
-    partytown({ config: { forward: ['dataLayer.push', 'gtag'] } }),
+    // GA4 runs off the main thread via Partytown. Solo con GA4.
+    ...(PUBLIC_GA4_ID ? [partytown({ config: { forward: ['dataLayer.push', 'gtag'] } })] : []),
   ],
 
   adapter: vercel(),
