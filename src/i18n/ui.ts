@@ -220,7 +220,7 @@ export const ui = {
       home: {
         title: 'Utah Accident Firm — Ayuda con Reclamos de Seguro de Auto en Utah',
         description:
-          'Después de un accidente de auto en Utah, gestionamos tu reclamo de seguro, abogamos por un pago justo y coordinamos la reparación de tu vehículo. No somos abogados. Consulta gratis.',
+          'Tras un choque en Utah, gestionamos tu reclamo de seguro, luchamos por un pago justo y coordinamos la reparación de tu auto. No somos abogados. Consulta gratis.',
       },
     },
   },
