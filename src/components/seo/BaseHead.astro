@@ -112,9 +112,30 @@ const jsonLd = {
     <script type="text/partytown" src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA4_ID}`} is:inline></script>
     <script type="text/partytown" is:inline define:vars={{ id: PUBLIC_GA4_ID }}>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      window.gtag = function(){dataLayer.push(arguments);};
       gtag('js', new Date());
       gtag('config', id);
+    </script>
+    {/*
+      Eventos de conversión. Partytown (y define:vars) corren el script dentro de
+      una función: un `function gtag` suelto no quedaba en window del worker, por
+      eso es window.gtag. En el hilo principal window.gtag es el stub que crea
+      Partytown (forward: 'gtag') y reenvía la llamada al worker, donde empuja un
+      `arguments` real a dataLayer. Un dataLayer.push([...]) desde aquí llegaría
+      como arreglo, no como comando de gtag, y GA4 lo ignoraría.
+      click_call cuenta cualquier enlace tel: (aparecen cuando PHONE_NUMBER esté
+      en Vercel); WhatsApp sale por /api/wa/ o wa.me.
+    */}
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var a = e.target instanceof Element && e.target.closest('a[href]');
+        if (!a || typeof window.gtag !== 'function') return;
+        var h = a.hostname;
+        var n = a.protocol === 'tel:' ? 'click_call'
+          : h === 'wa.me' || h === 'api.whatsapp.com' || (h === location.hostname && a.pathname.indexOf('/api/wa/') === 0) ? 'click_whatsapp'
+          : '';
+        if (n) window.gtag('event', n, { page_location: location.origin + location.pathname });
+      });
     </script>
   </>
 )}

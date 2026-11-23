@@ -202,6 +202,9 @@ export default function Quiz({
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
+        // Conversión para GA4. `window.gtag` solo existe con PUBLIC_GA4_ID (stub de
+        // Partytown, ver BaseHead.astro); sin GA4 no hace nada. Nunca datos del form.
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', { form: 'quiz' });
         setTone(eligibility);
         setDir(1);
         setPhase('result');

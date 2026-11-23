@@ -72,6 +72,9 @@ export default function ContactForm({ t, lang, privacyHref, privacyLink }: Props
       });
       const json = await res.json().catch(() => ({ ok: res.ok }));
       if (res.ok && json.ok) {
+        // Conversión para GA4 (no en el honeypot de arriba). `window.gtag` solo existe
+        // con PUBLIC_GA4_ID (ver BaseHead.astro); sin GA4 no hace nada.
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', 'generate_lead', { form: 'contacto' });
         setStatus('success');
         form.reset();
       } else {
