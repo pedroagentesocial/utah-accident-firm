@@ -120,6 +120,9 @@ export default function Quiz({
   const [phase, setPhase] = useState<Phase>('quiz');
   const [status, setStatus] = useState<Status>('idle');
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  // Si el envío falla, se arma un correo con lo que la persona ya escribió,
+  // para que no tenga que volver a escribirlo y el lead no se pierda.
+  const [mailtoHref, setMailtoHref] = useState<string | null>(null);
   const [tone, setTone] = useState<'qualifies' | 'review'>('review');
   const [dir, setDir] = useState(1);
   const [pending, setPending] = useState<{ value: string; tip: string } | null>(null);
@@ -194,6 +197,18 @@ export default function Quiz({
     const form = e.currentTarget;
     const payload = Object.fromEntries(new FormData(form).entries());
     const eligibility = assess(answers);
+    const lines = [
+      `${chrome.name}: ${String(payload.name ?? '')}`,
+      `${chrome.phone}: ${String(payload.phone ?? '')}`,
+      payload.email ? `Email: ${String(payload.email)}` : '',
+      '',
+      chrome.summary,
+      ...answeredChips.map((c) => `- ${c}`),
+    ].filter((l, i) => l !== '' || i === 3);
+    const subject = lang === 'es' ? 'Quiero empezar mi reclamo' : 'I want to start my claim';
+    setMailtoHref(
+      `mailto:hello@utahaccidentfirm.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`,
+    );
     try {
       const res = await fetch('/api/contact/', {
         method: 'POST',
@@ -363,7 +378,16 @@ export default function Quiz({
                   </span>
                 </label>
                 {fieldErrors.consent && <p id="q-consent-error" className="text-xs text-danger-200">{chrome.errors.consent}</p>}
-                {status === 'error' && <p role="alert" className="text-sm text-danger-200">{chrome.error}</p>}
+                {status === 'error' && (
+                  <div role="alert" className="flex flex-col gap-2 text-sm text-danger-200">
+                    <p>{chrome.error}</p>
+                    {mailtoHref && (
+                      <a href={mailtoHref} className="w-full rounded-pill border border-cream px-5 py-3 text-center text-base font-semibold text-cream transition-colors hover:bg-cream hover:text-brand">
+                        {lang === 'es' ? 'Enviar mis datos por correo' : 'Send my info by email'}
+                      </a>
+                    )}
+                  </div>
+                )}
                 <button type="submit" disabled={status === 'sending'} className="mt-1 w-full rounded-pill bg-cream px-5 py-3.5 text-base font-semibold text-brand shadow-soft transition-colors hover:bg-paper active:scale-[.98] disabled:opacity-70">
                   {status === 'sending' ? chrome.submitting : chrome.submit}
                 </button>

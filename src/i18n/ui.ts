@@ -89,7 +89,7 @@ export const ui = {
       submit: 'See my result',
       submitting: 'Sending…',
       captured: 'Got it, we have your info.',
-      error: 'Something went wrong. Please try again or email us at hello@utahaccidentfirm.com.',
+      error: 'We could not send your info from here. Tap the button to email it to us; it is already written.',
       disclaimer: 'Utah Accident Firm is not a law firm and does not give legal advice.',
       errors: {
         name: 'Please enter your name',
@@ -196,7 +196,7 @@ export const ui = {
       submit: 'Ver mi resultado',
       submitting: 'Enviando…',
       captured: 'Listo, tenemos tus datos.',
-      error: 'Algo salió mal. Inténtalo de nuevo o escríbenos a hello@utahaccidentfirm.com.',
+      error: 'No pudimos enviar tus datos desde aquí. Toca el botón para mandárnoslos por correo; ya van escritos.',
       disclaimer: 'Utah Accident Firm no es un despacho de abogados y no da asesoría legal.',
       errors: {
         name: 'Ingresa tu nombre',
